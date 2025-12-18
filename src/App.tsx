@@ -6,7 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { AccessibilityProvider } from "@/context/AccessibilityContext";
 import { VillageProvider } from "@/context/VillageContext";
-import { FestivalThemeProvider } from "@/context/FestivalThemeContext";
+import { ThemeEngineProvider } from "@/context/ThemeEngineContext";
+import { ThemePicker } from "@/components/theme/ThemePicker";
+import { ThemeAnimations } from "@/components/theme/ThemeAnimations";
 
 import HomePage from "./pages/HomePage";
 import SchemesPage from "./pages/SchemesPage";
@@ -26,13 +28,15 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <FestivalThemeProvider>
+    <ThemeEngineProvider>
       <ThemeProvider>
         <AccessibilityProvider>
           <VillageProvider>
             <TooltipProvider>
               <Toaster />
               <Sonner />
+              <ThemeAnimations />
+              <ThemePicker />
               <BrowserRouter>
                 <Routes>
                   <Route path="/" element={<HomePage />} />
@@ -57,7 +61,7 @@ const App = () => (
           </VillageProvider>
         </AccessibilityProvider>
       </ThemeProvider>
-    </FestivalThemeProvider>
+    </ThemeEngineProvider>
   </QueryClientProvider>
 );
 

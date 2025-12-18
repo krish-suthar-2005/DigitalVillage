@@ -1,175 +1,122 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useFestivalTheme } from '@/context/FestivalThemeContext';
-import type { AnimationType } from '@/lib/theme-types';
+import React, { useEffect, useState, useCallback, memo } from 'react';
+import { useThemeEngine } from '@/context/ThemeEngineContext';
 
 interface Particle {
   id: number;
   x: number;
   y: number;
   size: number;
-  speed: number;
-  opacity: number;
-  rotation: number;
   color: string;
-  character?: string;
+  delay: number;
+  duration: number;
+  opacity: number;
 }
 
-const animationConfigs: Record<AnimationType, { colors: string[]; characters?: string[]; count: { low: number; medium: number; high: number } }> = {
-  confetti: {
-    colors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8'],
-    count: { low: 20, medium: 40, high: 80 },
-  },
-  snow: {
-    colors: ['#FFFFFF', '#E8F4F8', '#D4E5ED'],
-    characters: ['❄', '❅', '❆', '•'],
-    count: { low: 30, medium: 60, high: 100 },
-  },
-  fireworks: {
-    colors: ['#FFD700', '#FF6347', '#00CED1', '#FF69B4', '#32CD32', '#9370DB'],
-    characters: ['✦', '✧', '★', '✴', '✵'],
-    count: { low: 15, medium: 30, high: 50 },
-  },
-  diyas: {
-    colors: ['#FFD700', '#FFA500', '#FF8C00', '#FF6347'],
-    characters: ['🪔', '✨', '💫'],
-    count: { low: 10, medium: 20, high: 35 },
-  },
-  petals: {
-    colors: ['#FFB7C5', '#FF69B4', '#FFC0CB', '#FFE4E1', '#FF1493'],
-    characters: ['🌸', '🌺', '✿', '❀'],
-    count: { low: 15, medium: 30, high: 50 },
-  },
-  hearts: {
-    colors: ['#FF6B6B', '#FF1493', '#DC143C', '#FF69B4'],
-    characters: ['❤', '💕', '💖', '💗'],
-    count: { low: 10, medium: 20, high: 40 },
-  },
-  leaves: {
-    colors: ['#8B4513', '#D2691E', '#CD853F', '#F4A460', '#DAA520'],
-    characters: ['🍂', '🍁', '🍃'],
-    count: { low: 15, medium: 30, high: 50 },
-  },
-  stars: {
-    colors: ['#FFD700', '#FFF8DC', '#FFFACD', '#F0E68C'],
-    characters: ['⭐', '✨', '💫', '✦'],
-    count: { low: 15, medium: 30, high: 50 },
-  },
-  none: {
-    colors: [],
-    count: { low: 0, medium: 0, high: 0 },
-  },
-};
-
-export function ThemeAnimations() {
-  const { currentTheme, userPreferences } = useFestivalTheme();
+// Memoized animation component for performance
+export const ThemeAnimations = memo(function ThemeAnimations() {
+  const { currentTheme, animationsEnabled } = useThemeEngine();
   const [particles, setParticles] = useState<Particle[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>();
 
-  const { animation } = currentTheme;
-  const shouldAnimate = animation.enabled && 
-    !userPreferences.disableAnimations && 
-    !userPreferences.reducedMotion &&
-    animation.type !== 'none';
+  const animationType = currentTheme.animation;
+  const shouldAnimate = animationsEnabled && animationType !== 'none';
 
-  useEffect(() => {
-    if (!shouldAnimate) {
-      setParticles([]);
-      return;
+  // Generate particles based on animation type
+  const generateParticles = useCallback(() => {
+    if (!shouldAnimate) return [];
+
+    const count = 20; // Keep it light for performance
+    const newParticles: Particle[] = [];
+
+    for (let i = 0; i < count; i++) {
+      const colors = getColors(animationType);
+      newParticles.push({
+        id: i,
+        x: Math.random() * 100,
+        y: 0,
+        size: animationType === 'snow' ? 4 + Math.random() * 4 : 6 + Math.random() * 6,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        delay: Math.random() * 10,
+        duration: 8 + Math.random() * 8,
+        opacity: 0.5 + Math.random() * 0.4,
+      });
     }
 
-    const config = animationConfigs[animation.type];
-    const count = config.count[animation.intensity];
+    return newParticles;
+  }, [animationType, shouldAnimate]);
 
-    // Initialize particles
-    const initialParticles: Particle[] = Array.from({ length: count }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * -100 - 10,
-      size: Math.random() * 1.5 + 0.5,
-      speed: Math.random() * 2 + 1,
-      opacity: Math.random() * 0.5 + 0.5,
-      rotation: Math.random() * 360,
-      color: config.colors[Math.floor(Math.random() * config.colors.length)],
-      character: config.characters ? config.characters[Math.floor(Math.random() * config.characters.length)] : undefined,
-    }));
+  useEffect(() => {
+    if (shouldAnimate) {
+      setParticles(generateParticles());
+      
+      // Regenerate particles periodically
+      const interval = setInterval(() => {
+        setParticles(generateParticles());
+      }, 15000);
 
-    setParticles(initialParticles);
+      return () => clearInterval(interval);
+    } else {
+      setParticles([]);
+    }
+  }, [shouldAnimate, generateParticles]);
 
-    // Animation loop
-    let lastTime = 0;
-    const animate = (time: number) => {
-      if (time - lastTime > 50) { // ~20fps for performance
-        lastTime = time;
-        setParticles(prev => prev.map(p => {
-          let newY = p.y + p.speed;
-          let newX = p.x + Math.sin(time / 1000 + p.id) * 0.3;
-          let newRotation = p.rotation + p.speed;
-
-          // Reset particle when it goes off screen
-          if (newY > 110) {
-            newY = -10;
-            newX = Math.random() * 100;
-          }
-
-          return {
-            ...p,
-            y: newY,
-            x: newX,
-            rotation: newRotation,
-          };
-        }));
-      }
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [shouldAnimate, animation.type, animation.intensity]);
-
-  if (!shouldAnimate || particles.length === 0) {
-    return null;
-  }
+  if (!shouldAnimate || particles.length === 0) return null;
 
   return (
-    <div
-      ref={containerRef}
-      className="fixed inset-0 pointer-events-none overflow-hidden z-[9999]"
+    <div 
+      className="fixed inset-0 pointer-events-none z-30 overflow-hidden"
       aria-hidden="true"
     >
-      {particles.map(particle => (
+      {particles.map((particle) => (
         <div
           key={particle.id}
-          className="absolute transition-none"
+          className="absolute animate-particle"
           style={{
             left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            fontSize: `${particle.size}rem`,
+            top: `-${particle.size}px`,
+            width: particle.size,
+            height: particle.size,
+            backgroundColor: particle.color,
+            borderRadius: animationType === 'snow' ? '50%' : '2px',
             opacity: particle.opacity,
-            transform: `rotate(${particle.rotation}deg)`,
-            color: particle.color,
-            textShadow: animation.type === 'fireworks' ? `0 0 10px ${particle.color}` : undefined,
-            willChange: 'transform, top, left',
+            animationDelay: `${particle.delay}s`,
+            animationDuration: `${particle.duration}s`,
           }}
-        >
-          {particle.character || (
-            <div
-              style={{
-                width: `${particle.size * 8}px`,
-                height: `${particle.size * 8}px`,
-                backgroundColor: particle.color,
-                borderRadius: animation.type === 'confetti' ? '2px' : '50%',
-                transform: animation.type === 'confetti' ? `rotate(${particle.rotation}deg)` : undefined,
-              }}
-            />
-          )}
-        </div>
+        />
       ))}
+      <style>{`
+        @keyframes particle-fall {
+          0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: var(--particle-opacity, 0.8);
+          }
+          100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+          }
+        }
+        .animate-particle {
+          animation: particle-fall linear forwards;
+        }
+      `}</style>
     </div>
   );
+});
+
+function getColors(type: string): string[] {
+  switch (type) {
+    case 'confetti':
+      return ['#FF6B6B', '#4ECDC4', '#FFE66D', '#95E1D3', '#F38181'];
+    case 'snow':
+      return ['#FFFFFF', '#E8F4F8', '#D4E5ED'];
+    case 'fireworks':
+      return ['#FFD700', '#FF6B35', '#FF4081', '#7C4DFF', '#00E5FF'];
+    case 'diyas':
+      return ['#FFB347', '#FFCC33', '#FF8C00', '#FFD700'];
+    case 'petals':
+      return ['#FFB6C1', '#FF69B4', '#FFC0CB', '#FF1493'];
+    case 'stars':
+      return ['#FFD700', '#FFFACD', '#F0E68C', '#FAFAD2'];
+    default:
+      return ['#888888'];
+  }
 }
