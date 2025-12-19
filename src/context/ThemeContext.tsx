@@ -59,8 +59,20 @@ const STORAGE_KEY = 'village-portal-theme';
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<ThemeSettings>(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : defaultTheme;
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        // Validate it's actually a ThemeSettings object
+        if (parsed && typeof parsed === 'object' && 'currentThemeName' in parsed) {
+          return parsed;
+        }
+      }
+    } catch {
+      // Invalid JSON in storage - clear it and use default
+      localStorage.removeItem(STORAGE_KEY);
+    }
+    return defaultTheme;
   });
 
   useEffect(() => {
