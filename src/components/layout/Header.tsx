@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   Menu,
@@ -22,53 +22,96 @@ import {
   FileCheck,
   Package,
   Landmark,
+  Eye,
 } from 'lucide-react';
 import { useVillage } from '@/context/VillageContext';
-import { Button } from '@/components/ui/button';
+import { useTranslation } from '@/hooks/useTranslation';
+import { useLiveUserCount } from '@/hooks/useLiveUserCount';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { path: '/', label: 'Home', icon: Home },
-  { path: '/schemes', label: 'Schemes', icon: FileText },
-  { path: '/members', label: 'Members', icon: Users },
-  { path: '/gram-sabha', label: 'Gram Sabha', icon: Calendar },
-  { path: '/development', label: 'Development', icon: HardHat },
-  { path: '/complaints', label: 'Complaints', icon: MessageSquare },
-  { path: '/events', label: 'Events', icon: PartyPopper },
-  { path: '/attractions', label: 'Attractions', icon: MapPinned },
-  { path: '/amenities', label: 'Amenities', icon: Building2 },
-  { path: '/announcements', label: 'Announcements', icon: Megaphone },
-  { path: '/services', label: 'Services', icon: Link2 },
-  { path: '/finance', label: 'Finance', icon: Wallet },
-  { path: '/tenders', label: 'Tenders', icon: FileCheck },
-  { path: '/assets', label: 'Assets', icon: Package },
-  { path: '/taluka', label: 'Taluka', icon: Landmark },
-];
+  { path: '/', labelKey: 'home', icon: Home },
+  { path: '/schemes', labelKey: 'schemes', icon: FileText },
+  { path: '/members', labelKey: 'members', icon: Users },
+  { path: '/gram-sabha', labelKey: 'gramSabha', icon: Calendar },
+  { path: '/development', labelKey: 'development', icon: HardHat },
+  { path: '/complaints', labelKey: 'complaints', icon: MessageSquare },
+  { path: '/events', labelKey: 'events', icon: PartyPopper },
+  { path: '/attractions', labelKey: 'attractions', icon: MapPinned },
+  { path: '/amenities', labelKey: 'amenities', icon: Building2 },
+  { path: '/announcements', labelKey: 'announcements', icon: Megaphone },
+  { path: '/services', labelKey: 'services', icon: Link2 },
+  { path: '/finance', labelKey: 'finance', icon: Wallet },
+  { path: '/tenders', labelKey: 'tenders', icon: FileCheck },
+  { path: '/assets', labelKey: 'assets', icon: Package },
+  { path: '/taluka', labelKey: 'taluka', icon: Landmark },
+] as const;
+
+// Live User Counter Component
+const LiveUserCounter = memo(function LiveUserCounter() {
+  const { count, isLoading } = useLiveUserCount();
+  const { t } = useTranslation();
+  
+  if (isLoading) {
+    return (
+      <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-muted rounded-full animate-pulse">
+        <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+        <span className="text-xs text-muted-foreground">--</span>
+      </div>
+    );
+  }
+  
+  return (
+    <div 
+      className="flex items-center gap-1.5 px-2.5 py-1.5 bg-success/10 rounded-full border border-success/20"
+      title={t('usersOnline')}
+    >
+      <span className="relative flex h-2 w-2">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75" />
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-success" />
+      </span>
+      <Eye className="w-3.5 h-3.5 text-success" />
+      <span className="text-xs font-medium text-success">
+        {count.toLocaleString()}
+      </span>
+    </div>
+  );
+});
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [villageDropdownOpen, setVillageDropdownOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const { selectedVillage, setSelectedVillage, villages, language, setLanguage, languages } = useVillage();
+  const { t } = useTranslation();
   const location = useLocation();
+
+  const closeAllDropdowns = () => {
+    setVillageDropdownOpen(false);
+    setLangDropdownOpen(false);
+  };
+
+  const getNavLabel = (labelKey: string) => {
+    return t(labelKey as keyof typeof t);
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-card/95 backdrop-blur-sm border-b border-border shadow-sm">
       {/* Skip link for accessibility */}
       <a href="#main-content" className="skip-link">
-        Skip to main content
+        {t('skipToContent')}
       </a>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Title */}
-          <Link to="/" className="flex items-center gap-3 no-highlight">
+          <Link to="/" className="flex items-center gap-3 no-highlight" onClick={closeAllDropdowns}>
             <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
               <Landmark className="w-6 h-6 text-primary-foreground" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-lg font-semibold text-foreground">Gram Panchayat</h1>
-              <p className="text-xs text-muted-foreground">Digital Village Portal</p>
+              <h1 className="text-lg font-semibold text-foreground">{t('gramPanchayat')}</h1>
+              <p className="text-xs text-muted-foreground">{t('digitalVillagePortal')}</p>
             </div>
           </Link>
 
@@ -82,12 +125,14 @@ export function Header() {
                   setLangDropdownOpen(false);
                 }}
                 className="flex items-center gap-2 px-3 py-2 bg-muted rounded-lg hover:bg-muted/80 transition-colors"
+                aria-expanded={villageDropdownOpen}
+                aria-haspopup="listbox"
               >
                 <MapPin className="w-4 h-4 text-primary" />
                 <span className="text-sm font-medium">
-                  {selectedVillage ? selectedVillage.name : 'Select Village'}
+                  {selectedVillage ? selectedVillage.name : t('selectVillage')}
                 </span>
-                <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", villageDropdownOpen && "rotate-180")} />
               </button>
 
               {villageDropdownOpen && (
@@ -96,7 +141,7 @@ export function Header() {
                     className="fixed inset-0 z-10"
                     onClick={() => setVillageDropdownOpen(false)}
                   />
-                  <div className="absolute top-full mt-2 left-0 w-48 bg-card border border-border rounded-lg shadow-lg z-20 py-1">
+                  <div className="absolute top-full mt-2 left-0 w-48 bg-card border border-border rounded-lg shadow-lg z-20 py-1 max-h-64 overflow-y-auto">
                     {villages.map((village) => (
                       <button
                         key={village.id}
@@ -106,7 +151,7 @@ export function Header() {
                         }}
                         className={cn(
                           'w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors',
-                          selectedVillage?.id === village.id && 'bg-muted font-medium'
+                          selectedVillage?.id === village.id && 'bg-muted font-medium text-primary'
                         )}
                       >
                         {village.name}
@@ -125,12 +170,14 @@ export function Header() {
                   setVillageDropdownOpen(false);
                 }}
                 className="flex items-center gap-2 px-3 py-2 bg-muted rounded-lg hover:bg-muted/80 transition-colors"
+                aria-expanded={langDropdownOpen}
+                aria-haspopup="listbox"
               >
                 <Globe className="w-4 h-4 text-primary" />
                 <span className="text-sm font-medium">
                   {languages.find(l => l.code === language)?.nativeName}
                 </span>
-                <ChevronDown className="w-4 h-4 text-muted-foreground" />
+                <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", langDropdownOpen && "rotate-180")} />
               </button>
 
               {langDropdownOpen && (
@@ -139,7 +186,7 @@ export function Header() {
                     className="fixed inset-0 z-10"
                     onClick={() => setLangDropdownOpen(false)}
                   />
-                  <div className="absolute top-full mt-2 left-0 w-40 bg-card border border-border rounded-lg shadow-lg z-20 py-1">
+                  <div className="absolute top-full mt-2 left-0 w-44 bg-card border border-border rounded-lg shadow-lg z-20 py-1">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
@@ -149,10 +196,11 @@ export function Header() {
                         }}
                         className={cn(
                           'w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors',
-                          language === lang.code && 'bg-muted font-medium'
+                          language === lang.code && 'bg-muted font-medium text-primary'
                         )}
                       >
-                        {lang.nativeName} ({lang.name})
+                        <span className="font-medium">{lang.nativeName}</span>
+                        <span className="text-muted-foreground ml-1">({lang.name})</span>
                       </button>
                     ))}
                   </div>
@@ -161,18 +209,26 @@ export function Header() {
             </div>
           </div>
 
-          {/* Right: Notifications & Mobile menu toggle */}
+          {/* Right: Live Counter, Notifications & Mobile menu toggle */}
           <div className="flex items-center gap-2">
+            {/* Live User Counter */}
+            <div className="hidden sm:block">
+              <LiveUserCounter />
+            </div>
+            
             <button
               className="relative p-2 hover:bg-muted rounded-lg transition-colors"
-              aria-label="Notifications"
+              aria-label={t('notifications')}
             >
               <Bell className="w-5 h-5 text-foreground" />
               <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full" />
             </button>
 
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => {
+                setMobileMenuOpen(!mobileMenuOpen);
+                closeAllDropdowns();
+              }}
               className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
@@ -187,7 +243,7 @@ export function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1 py-2 overflow-x-auto">
+        <nav className="hidden md:flex items-center gap-1 py-2 overflow-x-auto scrollbar-none">
           {navItems.slice(0, 8).map((item) => (
             <Link
               key={item.path}
@@ -200,13 +256,13 @@ export function Header() {
               )}
             >
               <item.icon className="w-4 h-4" />
-              {item.label}
+              {getNavLabel(item.labelKey)}
             </Link>
           ))}
           {/* More dropdown for remaining items */}
           <div className="relative group">
             <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors">
-              More
+              {t('more')}
               <ChevronDown className="w-4 h-4" />
             </button>
             <div className="absolute top-full left-0 mt-1 w-48 bg-card border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all py-1 z-20">
@@ -220,7 +276,7 @@ export function Header() {
                   )}
                 >
                   <item.icon className="w-4 h-4" />
-                  {item.label}
+                  {getNavLabel(item.labelKey)}
                 </Link>
               ))}
             </div>
@@ -230,7 +286,12 @@ export function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border bg-card">
+        <div className="md:hidden border-t border-border bg-card animate-fade-in">
+          {/* Mobile Live Counter */}
+          <div className="p-4 border-b border-border flex justify-center">
+            <LiveUserCounter />
+          </div>
+          
           {/* Mobile Village & Language */}
           <div className="p-4 border-b border-border grid grid-cols-2 gap-3">
             <select
@@ -240,8 +301,9 @@ export function Header() {
                 if (village) setSelectedVillage(village);
               }}
               className="form-input text-sm"
+              aria-label={t('selectVillage')}
             >
-              <option value="">Select Village</option>
+              <option value="">{t('selectVillage')}</option>
               {villages.map((v) => (
                 <option key={v.id} value={v.id}>{v.name}</option>
               ))}
@@ -251,6 +313,7 @@ export function Header() {
               value={language}
               onChange={(e) => setLanguage(e.target.value as 'en' | 'gu' | 'hi')}
               className="form-input text-sm"
+              aria-label={t('selectLanguage')}
             >
               {languages.map((l) => (
                 <option key={l.code} value={l.code}>{l.nativeName}</option>
@@ -273,7 +336,7 @@ export function Header() {
                 )}
               >
                 <item.icon className="w-4 h-4" />
-                {item.label}
+                {getNavLabel(item.labelKey)}
               </Link>
             ))}
           </nav>
