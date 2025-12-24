@@ -2,14 +2,16 @@ import React from 'react';
 import { Megaphone, Clock, AlertTriangle, Calendar, Info } from 'lucide-react';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { PageHeader } from '@/components/common/PageComponents';
+import { useTranslation } from '@/hooks/useTranslation';
 import { mockAnnouncements } from '@/lib/mock-data';
 import { cn } from '@/lib/utils';
 
 export default function AnnouncementsPage() {
+  const { t } = useTranslation();
   return (
     <MainLayout>
       <div className="page-container py-8">
-        <PageHeader title="Announcements" description="Official notices and announcements" icon={Megaphone} />
+        <PageHeader title={t('announcements')} description={t('officialNotices')} icon={Megaphone} />
         <div className="space-y-4">
           {mockAnnouncements.map((a) => (
             <article key={a.id} className={cn('card-elevated p-5 border-l-4', a.type === 'EMERGENCY' ? 'border-l-destructive' : a.type === 'MEETING' ? 'border-l-warning' : 'border-l-info')}>
