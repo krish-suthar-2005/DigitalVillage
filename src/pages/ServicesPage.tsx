@@ -2,15 +2,17 @@ import React from 'react';
 import { Link2, ExternalLink } from 'lucide-react';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { PageHeader } from '@/components/common/PageComponents';
+import { useTranslation } from '@/hooks/useTranslation';
 import { mockServiceLinks } from '@/lib/mock-data';
 
 const categoryEmojis: Record<string, string> = { BIRTH_CERTIFICATE: '📜', LICENSE: '📋', VOTER: '🗳️', LAND_RECORD: '🏞️', JOBS: '💼', BUS_TRAIN: '🚃', LIVE_STREAM: '📺', OTHER: '🔗' };
 
 export default function ServicesPage() {
+  const { t } = useTranslation();
   return (
     <MainLayout>
       <div className="page-container py-8">
-        <PageHeader title="Service Links" description="Quick access to government services and portals" icon={Link2} />
+        <PageHeader title={t('serviceLinks')} description={t('quickAccessServices')} icon={Link2} />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {mockServiceLinks.map((link) => (
             <a key={link.id} href={link.url} target="_blank" rel="noopener noreferrer" className="card-elevated p-5 hover:shadow-lg transition-all group no-highlight">

@@ -10,16 +10,15 @@ import {
   MapPinned,
   Building2,
   Megaphone,
-  Link2,
   ArrowRight,
   ChevronRight,
-  TrendingUp,
   Clock,
   CheckCircle2,
   AlertCircle,
 } from 'lucide-react';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { useVillage } from '@/context/VillageContext';
+import { useTranslation } from '@/hooks/useTranslation';
 import { VillageSelectorModal } from '@/components/common/VillageSelectorModal';
 import { StatCard, StatusBadge } from '@/components/common/PageComponents';
 import { Button } from '@/components/ui/button';
@@ -33,18 +32,19 @@ import {
 import { cn } from '@/lib/utils';
 
 const quickLinks = [
-  { to: '/schemes', label: 'Government Schemes', icon: FileText, color: 'bg-info/10 text-info' },
-  { to: '/members', label: 'Panchayat Members', icon: Users, color: 'bg-success/10 text-success' },
-  { to: '/gram-sabha', label: 'Gram Sabha', icon: Calendar, color: 'bg-warning/10 text-warning' },
-  { to: '/development', label: 'Development Works', icon: HardHat, color: 'bg-primary/10 text-primary' },
-  { to: '/complaints', label: 'File Complaint', icon: MessageSquare, color: 'bg-destructive/10 text-destructive' },
-  { to: '/events', label: 'Events & Gallery', icon: PartyPopper, color: 'bg-accent/10 text-accent' },
-  { to: '/attractions', label: 'Local Attractions', icon: MapPinned, color: 'bg-secondary-light/10 text-secondary' },
-  { to: '/amenities', label: 'Amenities', icon: Building2, color: 'bg-info/10 text-info' },
-];
+  { to: '/schemes', labelKey: 'governmentSchemes', icon: FileText, color: 'bg-info/10 text-info' },
+  { to: '/members', labelKey: 'panchayatMembers', icon: Users, color: 'bg-success/10 text-success' },
+  { to: '/gram-sabha', labelKey: 'gramSabha', icon: Calendar, color: 'bg-warning/10 text-warning' },
+  { to: '/development', labelKey: 'developmentWorks', icon: HardHat, color: 'bg-primary/10 text-primary' },
+  { to: '/complaints', labelKey: 'fileComplaint', icon: MessageSquare, color: 'bg-destructive/10 text-destructive' },
+  { to: '/events', labelKey: 'events', icon: PartyPopper, color: 'bg-accent/10 text-accent-foreground' },
+  { to: '/attractions', labelKey: 'localAttractions', icon: MapPinned, color: 'bg-secondary/10 text-secondary-foreground' },
+  { to: '/amenities', labelKey: 'amenities', icon: Building2, color: 'bg-info/10 text-info' },
+] as const;
 
 export default function HomePage() {
   const { selectedVillage, isLoading } = useVillage();
+  const { t } = useTranslation();
   const [showVillageSelector, setShowVillageSelector] = useState(false);
 
   useEffect(() => {
@@ -60,25 +60,24 @@ export default function HomePage() {
         <div className="page-container relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground animate-fade-in">
-              Welcome to{' '}
+              {t('welcomeTo')}{' '}
               <span className="text-gradient">
-                {selectedVillage ? selectedVillage.name : 'Your Village'}
+                {selectedVillage ? selectedVillage.name : t('villageName')}
               </span>{' '}
-              Gram Panchayat
+              {t('gramPanchayat')}
             </h1>
             <p className="mt-4 text-lg text-muted-foreground animate-slide-up" style={{ animationDelay: '0.1s' }}>
-              Your digital gateway to local governance. Access government schemes, track development projects, 
-              and participate in village administration.
+              {t('heroDescription')}
             </p>
             <div className="mt-6 flex flex-wrap gap-3 animate-slide-up" style={{ animationDelay: '0.2s' }}>
               <Button asChild size="lg">
                 <Link to="/schemes">
-                  Explore Schemes
+                  {t('exploreSchemes')}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link to="/complaints">File Complaint</Link>
+                <Link to="/complaints">{t('fileComplaint')}</Link>
               </Button>
             </div>
           </div>
@@ -96,22 +95,22 @@ export default function HomePage() {
       <section className="page-container -mt-8 relative z-20">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard
-            title="Active Schemes"
+            title={t('activeSchemes')}
             value={mockSchemes.length}
             icon={FileText}
           />
           <StatCard
-            title="Development Works"
+            title={t('developmentWorks')}
             value={mockDevelopmentWorks.length}
             icon={HardHat}
           />
           <StatCard
-            title="Pending Complaints"
+            title={t('pendingComplaints')}
             value={mockComplaints.filter(c => c.status !== 'RESOLVED').length}
             icon={AlertCircle}
           />
           <StatCard
-            title="Resolution Rate"
+            title={t('resolutionRate')}
             value="87%"
             icon={CheckCircle2}
             trend={{ value: 5, isPositive: true }}
@@ -122,7 +121,7 @@ export default function HomePage() {
       {/* Quick Links */}
       <section className="page-container py-12">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="section-header mb-0">Quick Access</h2>
+          <h2 className="section-header mb-0">{t('quickAccess')}</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {quickLinks.map((link) => (
@@ -135,7 +134,7 @@ export default function HomePage() {
                 <link.icon className="w-6 h-6" />
               </div>
               <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                {link.label}
+                {t(link.labelKey as keyof typeof t)}
               </span>
             </Link>
           ))}
@@ -150,10 +149,10 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
                 <Megaphone className="w-5 h-5 text-primary" />
-                Latest Announcements
+                {t('latestAnnouncements')}
               </h2>
               <Link to="/announcements" className="text-sm text-primary hover:underline no-highlight">
-                View all
+                {t('viewAll')}
               </Link>
             </div>
             <div className="space-y-4">
@@ -186,10 +185,10 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
                 <HardHat className="w-5 h-5 text-primary" />
-                Ongoing Development
+                {t('ongoingDevelopment')}
               </h2>
               <Link to="/development" className="text-sm text-primary hover:underline no-highlight">
-                View all
+                {t('viewAll')}
               </Link>
             </div>
             <div className="space-y-4">
@@ -202,7 +201,7 @@ export default function HomePage() {
                   {work.progress_percentage !== undefined && (
                     <div className="mt-2">
                       <div className="flex items-center justify-between text-xs text-muted-foreground mb-1">
-                        <span>Progress</span>
+                        <span>{t('progress')}</span>
                         <span>{work.progress_percentage}%</span>
                       </div>
                       <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -214,7 +213,7 @@ export default function HomePage() {
                     </div>
                   )}
                   <p className="text-xs text-muted-foreground mt-2">
-                    Budget: ₹{(work.estimated_cost / 100000).toFixed(1)} Lakh
+                    {t('budget')}: ₹{(work.estimated_cost / 100000).toFixed(1)} {t('lakh')}
                   </p>
                 </article>
               ))}
@@ -231,10 +230,10 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
                 <PartyPopper className="w-5 h-5 text-primary" />
-                Upcoming Events
+                {t('upcomingEvents')}
               </h2>
               <Link to="/events" className="text-sm text-primary hover:underline no-highlight">
-                View all
+                {t('viewAll')}
               </Link>
             </div>
             <div className="space-y-3">
@@ -271,10 +270,10 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
                 <FileText className="w-5 h-5 text-primary" />
-                Popular Schemes
+                {t('popularSchemes')}
               </h2>
               <Link to="/schemes" className="text-sm text-primary hover:underline no-highlight">
-                View all
+                {t('viewAll')}
               </Link>
             </div>
             <div className="space-y-3">
