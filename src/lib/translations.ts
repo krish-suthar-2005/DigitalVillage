@@ -23,6 +23,15 @@ export interface Translations {
   search: string;
   filter: string;
   noResults: string;
+  clearFilters: string;
+  total: string;
+  pending: string;
+  resolved: string;
+  all: string;
+  allCategories: string;
+  allStatus: string;
+  allTypes: string;
+  allLevels: string;
   
   // Header & Navigation
   home: string;
@@ -79,11 +88,26 @@ export interface Translations {
   liveUsers: string;
   usersOnline: string;
   
-  // Complaints
+  // Complaints Page
   newComplaint: string;
   trackComplaint: string;
   complaintStatus: string;
   referenceId: string;
+  complaintsGrievances: string;
+  submitTrackComplaints: string;
+  fileNewComplaint: string;
+  yourName: string;
+  phoneNumber: string;
+  category: string;
+  complaintTitle: string;
+  description: string;
+  submitComplaint: string;
+  filedBy: string;
+  assignedTo: string;
+  priority: string;
+  highPriority: string;
+  mediumPriority: string;
+  lowPriority: string;
   
   // Status Labels
   statusNew: string;
@@ -96,8 +120,10 @@ export interface Translations {
   statusCancelled: string;
   statusPlanned: string;
   statusApproved: string;
+  statusOpen: string;
+  statusClosed: string;
   
-  // Categories
+  // Categories - Schemes
   categoryHousing: string;
   categoryEmployment: string;
   categoryHealth: string;
@@ -105,6 +131,132 @@ export interface Translations {
   categoryEducation: string;
   categoryAgriculture: string;
   categoryOther: string;
+  
+  // Categories - Complaints
+  categoryWater: string;
+  categoryRoad: string;
+  categoryElectricity: string;
+  categorySanitation: string;
+  categoryCorruption: string;
+  
+  // Categories - Development
+  categoryRoadWork: string;
+  categoryWaterWork: string;
+  categoryElectricWork: string;
+  categoryBuilding: string;
+  categoryDrainage: string;
+  
+  // Categories - Attractions
+  categoryReligious: string;
+  categoryHistorical: string;
+  categoryNature: string;
+  categoryMarket: string;
+  
+  // Categories - Amenities
+  categoryBank: string;
+  categoryClinic: string;
+  categoryHospital: string;
+  categoryShop: string;
+  
+  // Schemes Page
+  browseSchemes: string;
+  searchSchemes: string;
+  centralGovt: string;
+  stateGovt: string;
+  viewDetails: string;
+  noSchemesFound: string;
+  adjustFilters: string;
+  department: string;
+  
+  // Members Page
+  panchayatMembersStaff: string;
+  meetRepresentatives: string;
+  sarpanch: string;
+  deputySarpanch: string;
+  secretary: string;
+  member: string;
+  staff: string;
+  panchayatLeadership: string;
+  wardMembers: string;
+  panchayatStaff: string;
+  ward: string;
+  term: string;
+  
+  // Gram Sabha Page
+  gramSabhaMeetings: string;
+  viewMeetingsAgendas: string;
+  upcomingMeetings: string;
+  pastMeetings: string;
+  noUpcomingMeetings: string;
+  noPastMeetings: string;
+  meetingRecordsAppear: string;
+  agenda: string;
+  addToCalendar: string;
+  downloadMinutes: string;
+  venue: string;
+  time: string;
+  
+  // Development Page
+  trackDevelopment: string;
+  totalProjects: string;
+  inProgress: string;
+  completed: string;
+  totalBudget: string;
+  noDevelopmentWorks: string;
+  scheme: string;
+  
+  // Events Page
+  eventsGallery: string;
+  exploreEvents: string;
+  pastEventsGallery: string;
+  noPastEvents: string;
+  eventPhotosAppear: string;
+  upcoming: string;
+  
+  // Attractions Page
+  exploreAttractions: string;
+  inVillage: string;
+  nearbyAttractions: string;
+  nearbyOnly: string;
+  noAttractionsFound: string;
+  kmAway: string;
+  
+  // Amenities Page
+  localAmenities: string;
+  findAmenities: string;
+  searchAmenities: string;
+  noAmenitiesFound: string;
+  openingHours: string;
+  contact: string;
+  
+  // Announcements Page
+  officialNotices: string;
+  
+  // Services Page
+  serviceLinks: string;
+  quickAccessServices: string;
+  
+  // Finance Page
+  financeDashboard: string;
+  budgetTransparency: string;
+  budgetOverview: string;
+  expenditureSummary: string;
+  
+  // Tenders Page
+  eTenders: string;
+  openTenders: string;
+  estimatedCost: string;
+  lastDate: string;
+  
+  // Assets Page
+  villageAssets: string;
+  assetInventory: string;
+  
+  // Taluka Page
+  talukaPanchayat: string;
+  talukaAdmin: string;
+  hqAddress: string;
+  vision: string;
   
   // Footer
   allRightsReserved: string;
@@ -144,6 +296,15 @@ const translations: Record<Language, Translations> = {
     search: 'Search',
     filter: 'Filter',
     noResults: 'No results found',
+    clearFilters: 'Clear filters',
+    total: 'Total',
+    pending: 'Pending',
+    resolved: 'Resolved',
+    all: 'All',
+    allCategories: 'All Categories',
+    allStatus: 'All Status',
+    allTypes: 'All Types',
+    allLevels: 'All Levels',
     
     // Header & Navigation
     home: 'Home',
@@ -200,11 +361,26 @@ const translations: Record<Language, Translations> = {
     liveUsers: 'Live Users',
     usersOnline: 'users online',
     
-    // Complaints
+    // Complaints Page
     newComplaint: 'New Complaint',
     trackComplaint: 'Track Complaint',
     complaintStatus: 'Complaint Status',
     referenceId: 'Reference ID',
+    complaintsGrievances: 'Complaints & Grievances',
+    submitTrackComplaints: 'Submit and track your complaints and grievances',
+    fileNewComplaint: 'File New Complaint',
+    yourName: 'Your Name',
+    phoneNumber: 'Phone Number',
+    category: 'Category',
+    complaintTitle: 'Complaint Title',
+    description: 'Description',
+    submitComplaint: 'Submit Complaint',
+    filedBy: 'Filed by',
+    assignedTo: 'Assigned to',
+    priority: 'Priority',
+    highPriority: 'HIGH Priority',
+    mediumPriority: 'MEDIUM Priority',
+    lowPriority: 'LOW Priority',
     
     // Status Labels
     statusNew: 'New',
@@ -217,8 +393,10 @@ const translations: Record<Language, Translations> = {
     statusCancelled: 'Cancelled',
     statusPlanned: 'Planned',
     statusApproved: 'Approved',
+    statusOpen: 'Open',
+    statusClosed: 'Closed',
     
-    // Categories
+    // Categories - Schemes
     categoryHousing: 'Housing',
     categoryEmployment: 'Employment',
     categoryHealth: 'Health',
@@ -226,6 +404,132 @@ const translations: Record<Language, Translations> = {
     categoryEducation: 'Education',
     categoryAgriculture: 'Agriculture',
     categoryOther: 'Other',
+    
+    // Categories - Complaints
+    categoryWater: 'Water Supply',
+    categoryRoad: 'Roads',
+    categoryElectricity: 'Electricity',
+    categorySanitation: 'Sanitation',
+    categoryCorruption: 'Corruption',
+    
+    // Categories - Development
+    categoryRoadWork: 'Road',
+    categoryWaterWork: 'Water',
+    categoryElectricWork: 'Electric',
+    categoryBuilding: 'Building',
+    categoryDrainage: 'Drainage',
+    
+    // Categories - Attractions
+    categoryReligious: 'Religious',
+    categoryHistorical: 'Historical',
+    categoryNature: 'Nature',
+    categoryMarket: 'Market',
+    
+    // Categories - Amenities
+    categoryBank: 'Banks',
+    categoryClinic: 'Clinics',
+    categoryHospital: 'Hospitals',
+    categoryShop: 'Shops',
+    
+    // Schemes Page
+    browseSchemes: 'Browse and explore government schemes available for villagers',
+    searchSchemes: 'Search schemes...',
+    centralGovt: 'Central Govt',
+    stateGovt: 'State Govt',
+    viewDetails: 'View Details',
+    noSchemesFound: 'No schemes found',
+    adjustFilters: 'Try adjusting your search or filter criteria',
+    department: 'Department',
+    
+    // Members Page
+    panchayatMembersStaff: 'Panchayat Members & Staff',
+    meetRepresentatives: 'Meet your elected representatives and panchayat staff',
+    sarpanch: 'Sarpanch',
+    deputySarpanch: 'Deputy Sarpanch',
+    secretary: 'Secretary',
+    member: 'Member',
+    staff: 'Staff',
+    panchayatLeadership: 'Panchayat Leadership',
+    wardMembers: 'Ward Members',
+    panchayatStaff: 'Panchayat Staff',
+    ward: 'Ward',
+    term: 'Term',
+    
+    // Gram Sabha Page
+    gramSabhaMeetings: 'Gram Sabha Meetings',
+    viewMeetingsAgendas: 'View upcoming meetings, agendas, and past meeting minutes',
+    upcomingMeetings: 'Upcoming Meetings',
+    pastMeetings: 'Past Meetings',
+    noUpcomingMeetings: 'No upcoming meetings scheduled',
+    noPastMeetings: 'No past meetings',
+    meetingRecordsAppear: 'Meeting records will appear here after meetings are completed',
+    agenda: 'Agenda',
+    addToCalendar: 'Add to Calendar',
+    downloadMinutes: 'Download Minutes',
+    venue: 'Venue',
+    time: 'Time',
+    
+    // Development Page
+    trackDevelopment: 'Track ongoing and completed development projects in the village',
+    totalProjects: 'Total Projects',
+    inProgress: 'In Progress',
+    completed: 'Completed',
+    totalBudget: 'Total Budget',
+    noDevelopmentWorks: 'No development works found',
+    scheme: 'Scheme',
+    
+    // Events Page
+    eventsGallery: 'Events & Gallery',
+    exploreEvents: 'Explore village events, festivals, and photo gallery',
+    pastEventsGallery: 'Past Events & Gallery',
+    noPastEvents: 'No past events',
+    eventPhotosAppear: 'Event photos and details will appear here',
+    upcoming: 'Upcoming',
+    
+    // Attractions Page
+    exploreAttractions: 'Explore tourist spots and interesting places in and around the village',
+    inVillage: 'In Village',
+    nearbyAttractions: 'Nearby Attractions',
+    nearbyOnly: 'Nearby Only',
+    noAttractionsFound: 'No attractions found',
+    kmAway: 'km away',
+    
+    // Amenities Page
+    localAmenities: 'Local Amenities',
+    findAmenities: 'Find banks, hospitals, shops, and other essential services',
+    searchAmenities: 'Search amenities...',
+    noAmenitiesFound: 'No amenities found',
+    openingHours: 'Opening Hours',
+    contact: 'Contact',
+    
+    // Announcements Page
+    officialNotices: 'Official notices and announcements',
+    
+    // Services Page
+    serviceLinks: 'Service Links',
+    quickAccessServices: 'Quick access to government services and portals',
+    
+    // Finance Page
+    financeDashboard: 'Finance Dashboard',
+    budgetTransparency: 'Village budget and expenditure transparency',
+    budgetOverview: 'Budget Overview',
+    expenditureSummary: 'Expenditure Summary',
+    
+    // Tenders Page
+    eTenders: 'e-Tenders',
+    openTenders: 'Open tenders and work allotment notices',
+    estimatedCost: 'Estimated Cost',
+    lastDate: 'Last Date',
+    
+    // Assets Page
+    villageAssets: 'Village Assets',
+    assetInventory: 'Inventory of panchayat-owned assets',
+    
+    // Taluka Page
+    talukaPanchayat: 'Taluka Panchayat',
+    talukaAdmin: 'Taluka-level administration information',
+    hqAddress: 'HQ Address',
+    vision: 'Vision',
     
     // Footer
     allRightsReserved: 'All Rights Reserved',
@@ -264,6 +568,15 @@ const translations: Record<Language, Translations> = {
     search: 'શોધો',
     filter: 'ફિલ્ટર',
     noResults: 'કોઈ પરિણામ મળ્યું નથી',
+    clearFilters: 'ફિલ્ટર સાફ કરો',
+    total: 'કુલ',
+    pending: 'બાકી',
+    resolved: 'ઉકેલાયું',
+    all: 'બધા',
+    allCategories: 'બધી શ્રેણીઓ',
+    allStatus: 'બધી સ્થિતિ',
+    allTypes: 'બધા પ્રકાર',
+    allLevels: 'બધા સ્તર',
     
     // Header & Navigation
     home: 'હોમ',
@@ -320,11 +633,26 @@ const translations: Record<Language, Translations> = {
     liveUsers: 'લાઇવ વપરાશકર્તાઓ',
     usersOnline: 'ઓનલાઇન વપરાશકર્તાઓ',
     
-    // Complaints
+    // Complaints Page
     newComplaint: 'નવી ફરિયાદ',
     trackComplaint: 'ફરિયાદ ટ્રેક કરો',
     complaintStatus: 'ફરિયાદની સ્થિતિ',
     referenceId: 'સંદર્ભ આઈડી',
+    complaintsGrievances: 'ફરિયાદો અને ફરિયાદ',
+    submitTrackComplaints: 'તમારી ફરિયાદો સબમિટ કરો અને ટ્રેક કરો',
+    fileNewComplaint: 'નવી ફરિયાદ નોંધાવો',
+    yourName: 'તમારું નામ',
+    phoneNumber: 'ફોન નંબર',
+    category: 'શ્રેણી',
+    complaintTitle: 'ફરિયાદ શીર્ષક',
+    description: 'વર્ણન',
+    submitComplaint: 'ફરિયાદ સબમિટ કરો',
+    filedBy: 'દ્વારા દાખલ',
+    assignedTo: 'ને સોંપેલ',
+    priority: 'પ્રાથમિકતા',
+    highPriority: 'ઉચ્ચ પ્રાથમિકતા',
+    mediumPriority: 'મધ્યમ પ્રાથમિકતા',
+    lowPriority: 'ઓછી પ્રાથમિકતા',
     
     // Status Labels
     statusNew: 'નવું',
@@ -337,8 +665,10 @@ const translations: Record<Language, Translations> = {
     statusCancelled: 'રદ',
     statusPlanned: 'આયોજિત',
     statusApproved: 'મંજૂર',
+    statusOpen: 'ખુલ્લું',
+    statusClosed: 'બંધ',
     
-    // Categories
+    // Categories - Schemes
     categoryHousing: 'આવાસ',
     categoryEmployment: 'રોજગાર',
     categoryHealth: 'આરોગ્ય',
@@ -346,6 +676,132 @@ const translations: Record<Language, Translations> = {
     categoryEducation: 'શિક્ષણ',
     categoryAgriculture: 'કૃષિ',
     categoryOther: 'અન્ય',
+    
+    // Categories - Complaints
+    categoryWater: 'પાણી પુરવઠો',
+    categoryRoad: 'રસ્તાઓ',
+    categoryElectricity: 'વીજળી',
+    categorySanitation: 'સ્વચ્છતા',
+    categoryCorruption: 'ભ્રષ્ટાચાર',
+    
+    // Categories - Development
+    categoryRoadWork: 'રસ્તો',
+    categoryWaterWork: 'પાણી',
+    categoryElectricWork: 'વીજળી',
+    categoryBuilding: 'બિલ્ડિંગ',
+    categoryDrainage: 'ગટર',
+    
+    // Categories - Attractions
+    categoryReligious: 'ધાર્મિક',
+    categoryHistorical: 'ઐતિહાસિક',
+    categoryNature: 'પ્રકૃતિ',
+    categoryMarket: 'બજાર',
+    
+    // Categories - Amenities
+    categoryBank: 'બેંકો',
+    categoryClinic: 'ક્લિનિક',
+    categoryHospital: 'હોસ્પિટલ',
+    categoryShop: 'દુકાનો',
+    
+    // Schemes Page
+    browseSchemes: 'ગ્રામજનો માટે ઉપલબ્ધ સરકારી યોજનાઓ બ્રાઉઝ કરો',
+    searchSchemes: 'યોજનાઓ શોધો...',
+    centralGovt: 'કેન્દ્ર સરકાર',
+    stateGovt: 'રાજ્ય સરકાર',
+    viewDetails: 'વિગતો જુઓ',
+    noSchemesFound: 'કોઈ યોજના મળી નથી',
+    adjustFilters: 'તમારી શોધ અથવા ફિલ્ટર માપદંડ બદલવાનો પ્રયાસ કરો',
+    department: 'વિભાગ',
+    
+    // Members Page
+    panchayatMembersStaff: 'પંચાયત સભ્યો અને સ્ટાફ',
+    meetRepresentatives: 'તમારા ચૂંટાયેલા પ્રતિનિધિઓ અને પંચાયત સ્ટાફને મળો',
+    sarpanch: 'સરપંચ',
+    deputySarpanch: 'ઉપ-સરપંચ',
+    secretary: 'સચિવ',
+    member: 'સભ્ય',
+    staff: 'સ્ટાફ',
+    panchayatLeadership: 'પંચાયત નેતૃત્વ',
+    wardMembers: 'વોર્ડ સભ્યો',
+    panchayatStaff: 'પંચાયત સ્ટાફ',
+    ward: 'વોર્ડ',
+    term: 'કાર્યકાળ',
+    
+    // Gram Sabha Page
+    gramSabhaMeetings: 'ગ્રામ સભા બેઠકો',
+    viewMeetingsAgendas: 'આગામી બેઠકો, એજન્ડા અને ભૂતકાળની બેઠકની મિનિટ્સ જુઓ',
+    upcomingMeetings: 'આગામી બેઠકો',
+    pastMeetings: 'ભૂતકાળની બેઠકો',
+    noUpcomingMeetings: 'કોઈ આગામી બેઠક સુનિશ્ચિત નથી',
+    noPastMeetings: 'કોઈ ભૂતકાળની બેઠક નથી',
+    meetingRecordsAppear: 'બેઠક પૂર્ણ થયા પછી રેકોર્ડ્સ અહીં દેખાશે',
+    agenda: 'એજન્ડા',
+    addToCalendar: 'કેલેન્ડરમાં ઉમેરો',
+    downloadMinutes: 'મિનિટ્સ ડાઉનલોડ કરો',
+    venue: 'સ્થળ',
+    time: 'સમય',
+    
+    // Development Page
+    trackDevelopment: 'ગામમાં ચાલુ અને પૂર્ણ વિકાસ પ્રોજેક્ટ્સ ટ્રેક કરો',
+    totalProjects: 'કુલ પ્રોજેક્ટ્સ',
+    inProgress: 'પ્રગતિમાં',
+    completed: 'પૂર્ણ',
+    totalBudget: 'કુલ બજેટ',
+    noDevelopmentWorks: 'કોઈ વિકાસ કામો મળ્યા નથી',
+    scheme: 'યોજના',
+    
+    // Events Page
+    eventsGallery: 'કાર્યક્રમો અને ગેલેરી',
+    exploreEvents: 'ગામના કાર્યક્રમો, તહેવારો અને ફોટો ગેલેરી અન્વેષણ કરો',
+    pastEventsGallery: 'ભૂતકાળના કાર્યક્રમો અને ગેલેરી',
+    noPastEvents: 'કોઈ ભૂતકાળના કાર્યક્રમો નથી',
+    eventPhotosAppear: 'ઇવેન્ટ ફોટા અને વિગતો અહીં દેખાશે',
+    upcoming: 'આગામી',
+    
+    // Attractions Page
+    exploreAttractions: 'ગામ અને આસપાસના પ્રવાસન સ્થળો અને રસપ્રદ સ્થળો અન્વેષણ કરો',
+    inVillage: 'ગામમાં',
+    nearbyAttractions: 'નજીકના આકર્ષણો',
+    nearbyOnly: 'ફક્ત નજીકના',
+    noAttractionsFound: 'કોઈ આકર્ષણો મળ્યા નથી',
+    kmAway: 'કિમી દૂર',
+    
+    // Amenities Page
+    localAmenities: 'સ્થાનિક સુવિધાઓ',
+    findAmenities: 'બેંકો, હોસ્પિટલો, દુકાનો અને અન્ય આવશ્યક સેવાઓ શોધો',
+    searchAmenities: 'સુવિધાઓ શોધો...',
+    noAmenitiesFound: 'કોઈ સુવિધાઓ મળી નથી',
+    openingHours: 'ખુલવાનો સમય',
+    contact: 'સંપર્ક',
+    
+    // Announcements Page
+    officialNotices: 'સત્તાવાર નોટિસ અને જાહેરાતો',
+    
+    // Services Page
+    serviceLinks: 'સેવા લિંક્સ',
+    quickAccessServices: 'સરકારી સેવાઓ અને પોર્ટલ્સની ઝડપી પહોંચ',
+    
+    // Finance Page
+    financeDashboard: 'નાણાકીય ડેશબોર્ડ',
+    budgetTransparency: 'ગામનું બજેટ અને ખર્ચ પારદર્શિતા',
+    budgetOverview: 'બજેટ ઝાંખી',
+    expenditureSummary: 'ખર્ચ સારાંશ',
+    
+    // Tenders Page
+    eTenders: 'ઇ-ટેન્ડર',
+    openTenders: 'ખુલ્લા ટેન્ડર અને કામ ફાળવણી નોટિસ',
+    estimatedCost: 'અંદાજિત ખર્ચ',
+    lastDate: 'છેલ્લી તારીખ',
+    
+    // Assets Page
+    villageAssets: 'ગામની અસ્કયામતો',
+    assetInventory: 'પંચાયત-માલિકીની અસ્કયામતોની યાદી',
+    
+    // Taluka Page
+    talukaPanchayat: 'તાલુકા પંચાયત',
+    talukaAdmin: 'તાલુકા-સ્તરની વહીવટી માહિતી',
+    hqAddress: 'મુખ્ય કાર્યાલય સરનામું',
+    vision: 'વિઝન',
     
     // Footer
     allRightsReserved: 'સર્વ હક્ક અમારી પાસે રાખેલા છે',
@@ -384,6 +840,15 @@ const translations: Record<Language, Translations> = {
     search: 'खोजें',
     filter: 'फ़िल्टर',
     noResults: 'कोई परिणाम नहीं मिला',
+    clearFilters: 'फ़िल्टर साफ़ करें',
+    total: 'कुल',
+    pending: 'लंबित',
+    resolved: 'समाधान हुआ',
+    all: 'सभी',
+    allCategories: 'सभी श्रेणियां',
+    allStatus: 'सभी स्थिति',
+    allTypes: 'सभी प्रकार',
+    allLevels: 'सभी स्तर',
     
     // Header & Navigation
     home: 'होम',
@@ -440,11 +905,26 @@ const translations: Record<Language, Translations> = {
     liveUsers: 'लाइव उपयोगकर्ता',
     usersOnline: 'ऑनलाइन उपयोगकर्ता',
     
-    // Complaints
+    // Complaints Page
     newComplaint: 'नई शिकायत',
     trackComplaint: 'शिकायत ट्रैक करें',
     complaintStatus: 'शिकायत स्थिति',
     referenceId: 'संदर्भ आईडी',
+    complaintsGrievances: 'शिकायतें और समस्याएं',
+    submitTrackComplaints: 'अपनी शिकायतें जमा करें और ट्रैक करें',
+    fileNewComplaint: 'नई शिकायत दर्ज करें',
+    yourName: 'आपका नाम',
+    phoneNumber: 'फ़ोन नंबर',
+    category: 'श्रेणी',
+    complaintTitle: 'शिकायत शीर्षक',
+    description: 'विवरण',
+    submitComplaint: 'शिकायत जमा करें',
+    filedBy: 'द्वारा दर्ज',
+    assignedTo: 'को सौंपा गया',
+    priority: 'प्राथमिकता',
+    highPriority: 'उच्च प्राथमिकता',
+    mediumPriority: 'मध्यम प्राथमिकता',
+    lowPriority: 'कम प्राथमिकता',
     
     // Status Labels
     statusNew: 'नया',
@@ -457,8 +937,10 @@ const translations: Record<Language, Translations> = {
     statusCancelled: 'रद्द',
     statusPlanned: 'नियोजित',
     statusApproved: 'स्वीकृत',
+    statusOpen: 'खुला',
+    statusClosed: 'बंद',
     
-    // Categories
+    // Categories - Schemes
     categoryHousing: 'आवास',
     categoryEmployment: 'रोजगार',
     categoryHealth: 'स्वास्थ्य',
@@ -466,6 +948,132 @@ const translations: Record<Language, Translations> = {
     categoryEducation: 'शिक्षा',
     categoryAgriculture: 'कृषि',
     categoryOther: 'अन्य',
+    
+    // Categories - Complaints
+    categoryWater: 'जल आपूर्ति',
+    categoryRoad: 'सड़कें',
+    categoryElectricity: 'बिजली',
+    categorySanitation: 'स्वच्छता',
+    categoryCorruption: 'भ्रष्टाचार',
+    
+    // Categories - Development
+    categoryRoadWork: 'सड़क',
+    categoryWaterWork: 'पानी',
+    categoryElectricWork: 'बिजली',
+    categoryBuilding: 'भवन',
+    categoryDrainage: 'नाली',
+    
+    // Categories - Attractions
+    categoryReligious: 'धार्मिक',
+    categoryHistorical: 'ऐतिहासिक',
+    categoryNature: 'प्रकृति',
+    categoryMarket: 'बाज़ार',
+    
+    // Categories - Amenities
+    categoryBank: 'बैंक',
+    categoryClinic: 'क्लिनिक',
+    categoryHospital: 'अस्पताल',
+    categoryShop: 'दुकानें',
+    
+    // Schemes Page
+    browseSchemes: 'ग्रामीणों के लिए उपलब्ध सरकारी योजनाएं ब्राउज़ करें',
+    searchSchemes: 'योजनाएं खोजें...',
+    centralGovt: 'केंद्र सरकार',
+    stateGovt: 'राज्य सरकार',
+    viewDetails: 'विवरण देखें',
+    noSchemesFound: 'कोई योजना नहीं मिली',
+    adjustFilters: 'अपनी खोज या फ़िल्टर मानदंड बदलने का प्रयास करें',
+    department: 'विभाग',
+    
+    // Members Page
+    panchayatMembersStaff: 'पंचायत सदस्य और स्टाफ',
+    meetRepresentatives: 'अपने चुने हुए प्रतिनिधियों और पंचायत स्टाफ से मिलें',
+    sarpanch: 'सरपंच',
+    deputySarpanch: 'उप-सरपंच',
+    secretary: 'सचिव',
+    member: 'सदस्य',
+    staff: 'स्टाफ',
+    panchayatLeadership: 'पंचायत नेतृत्व',
+    wardMembers: 'वार्ड सदस्य',
+    panchayatStaff: 'पंचायत स्टाफ',
+    ward: 'वार्ड',
+    term: 'कार्यकाल',
+    
+    // Gram Sabha Page
+    gramSabhaMeetings: 'ग्राम सभा बैठकें',
+    viewMeetingsAgendas: 'आगामी बैठकें, एजेंडा और पिछली बैठक के मिनट्स देखें',
+    upcomingMeetings: 'आगामी बैठकें',
+    pastMeetings: 'पिछली बैठकें',
+    noUpcomingMeetings: 'कोई आगामी बैठक निर्धारित नहीं',
+    noPastMeetings: 'कोई पिछली बैठक नहीं',
+    meetingRecordsAppear: 'बैठक पूर्ण होने के बाद रिकॉर्ड यहां दिखाई देंगे',
+    agenda: 'एजेंडा',
+    addToCalendar: 'कैलेंडर में जोड़ें',
+    downloadMinutes: 'मिनट्स डाउनलोड करें',
+    venue: 'स्थान',
+    time: 'समय',
+    
+    // Development Page
+    trackDevelopment: 'गांव में चल रहे और पूर्ण विकास परियोजनाओं को ट्रैक करें',
+    totalProjects: 'कुल परियोजनाएं',
+    inProgress: 'प्रगति पर',
+    completed: 'पूर्ण',
+    totalBudget: 'कुल बजट',
+    noDevelopmentWorks: 'कोई विकास कार्य नहीं मिला',
+    scheme: 'योजना',
+    
+    // Events Page
+    eventsGallery: 'कार्यक्रम और गैलरी',
+    exploreEvents: 'गांव के कार्यक्रम, त्योहार और फोटो गैलरी देखें',
+    pastEventsGallery: 'पिछले कार्यक्रम और गैलरी',
+    noPastEvents: 'कोई पिछले कार्यक्रम नहीं',
+    eventPhotosAppear: 'इवेंट फोटो और विवरण यहां दिखाई देंगे',
+    upcoming: 'आगामी',
+    
+    // Attractions Page
+    exploreAttractions: 'गांव और आसपास के पर्यटन स्थल और दिलचस्प जगहें खोजें',
+    inVillage: 'गांव में',
+    nearbyAttractions: 'आसपास के आकर्षण',
+    nearbyOnly: 'केवल आसपास',
+    noAttractionsFound: 'कोई आकर्षण नहीं मिला',
+    kmAway: 'किमी दूर',
+    
+    // Amenities Page
+    localAmenities: 'स्थानीय सुविधाएं',
+    findAmenities: 'बैंक, अस्पताल, दुकानें और अन्य आवश्यक सेवाएं खोजें',
+    searchAmenities: 'सुविधाएं खोजें...',
+    noAmenitiesFound: 'कोई सुविधाएं नहीं मिलीं',
+    openingHours: 'खुलने का समय',
+    contact: 'संपर्क',
+    
+    // Announcements Page
+    officialNotices: 'आधिकारिक नोटिस और घोषणाएं',
+    
+    // Services Page
+    serviceLinks: 'सेवा लिंक',
+    quickAccessServices: 'सरकारी सेवाओं और पोर्टल्स तक त्वरित पहुंच',
+    
+    // Finance Page
+    financeDashboard: 'वित्त डैशबोर्ड',
+    budgetTransparency: 'गांव का बजट और व्यय पारदर्शिता',
+    budgetOverview: 'बजट अवलोकन',
+    expenditureSummary: 'व्यय सारांश',
+    
+    // Tenders Page
+    eTenders: 'ई-टेंडर',
+    openTenders: 'खुले टेंडर और कार्य आवंटन नोटिस',
+    estimatedCost: 'अनुमानित लागत',
+    lastDate: 'अंतिम तिथि',
+    
+    // Assets Page
+    villageAssets: 'गांव की संपत्तियां',
+    assetInventory: 'पंचायत-स्वामित्व वाली संपत्तियों की सूची',
+    
+    // Taluka Page
+    talukaPanchayat: 'तालुका पंचायत',
+    talukaAdmin: 'तालुका-स्तर प्रशासन जानकारी',
+    hqAddress: 'मुख्यालय पता',
+    vision: 'विज़न',
     
     // Footer
     allRightsReserved: 'सर्वाधिकार सुरक्षित',
