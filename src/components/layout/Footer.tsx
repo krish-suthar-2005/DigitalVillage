@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Landmark, Phone, Mail, MapPin, ExternalLink } from 'lucide-react';
 import { useVillage } from '@/context/VillageContext';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export function Footer() {
   const { selectedVillage } = useVillage();
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -18,33 +20,32 @@ export function Footer() {
                 <Landmark className="w-6 h-6 text-primary-foreground" />
               </div>
               <div>
-                <h3 className="font-semibold text-foreground">Gram Panchayat</h3>
-                <p className="text-xs text-muted-foreground">Digital Village Portal</p>
+                <h3 className="font-semibold text-foreground">{t('gramPanchayat')}</h3>
+                <p className="text-xs text-muted-foreground">{t('digitalVillagePortal')}</p>
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
-              Empowering villages with digital governance. Access government schemes, track development, 
-              and participate in local administration.
+              {t('heroDescription')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('quickAccess')}</h4>
             <ul className="space-y-2">
               {[
-                { to: '/schemes', label: 'Government Schemes' },
-                { to: '/complaints', label: 'File Complaint' },
-                { to: '/gram-sabha', label: 'Gram Sabha' },
-                { to: '/development', label: 'Development Works' },
-                { to: '/services', label: 'Service Links' },
+                { to: '/schemes', labelKey: 'governmentSchemes' },
+                { to: '/complaints', labelKey: 'fileComplaint' },
+                { to: '/gram-sabha', labelKey: 'gramSabha' },
+                { to: '/development', labelKey: 'development' },
+                { to: '/services', labelKey: 'services' },
               ].map((link) => (
                 <li key={link.to}>
                   <Link
                     to={link.to}
                     className="text-sm text-muted-foreground hover:text-foreground transition-colors no-highlight"
                   >
-                    {link.label}
+                    {t(link.labelKey as keyof typeof t)}
                   </Link>
                 </li>
               ))}
@@ -78,27 +79,27 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Contact</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('contactUs')}</h4>
             {selectedVillage ? (
               <div className="space-y-3 text-sm text-muted-foreground">
                 <div className="flex items-start gap-2">
-                  <MapPin className="w-4 h-4 mt-0.5 text-primary" />
+                  <MapPin className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                   <span>
                     {selectedVillage.name}, {selectedVillage.taluka_name}, {selectedVillage.district}, {selectedVillage.state}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-primary" />
+                  <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                   <span>+91 79 XXXX XXXX</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-primary" />
+                  <Mail className="w-4 h-4 text-primary flex-shrink-0" />
                   <span>contact@{selectedVillage.slug}.grampanchayat.in</span>
                 </div>
               </div>
             ) : (
               <p className="text-sm text-muted-foreground">
-                Select a village to see contact information.
+                {t('selectVillage')} to see contact information.
               </p>
             )}
           </div>
@@ -107,14 +108,14 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-8 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground text-center sm:text-left">
-            © {currentYear} Gram Panchayat Portal. All rights reserved.
+            © {currentYear} {t('gramPanchayat')} Portal. {t('allRightsReserved')}.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link to="/privacy" className="hover:text-foreground transition-colors no-highlight">
-              Privacy Policy
+              {t('privacyPolicy')}
             </Link>
             <Link to="/terms" className="hover:text-foreground transition-colors no-highlight">
-              Terms of Use
+              {t('termsOfService')}
             </Link>
             <Link to="/sitemap" className="hover:text-foreground transition-colors no-highlight">
               Sitemap
