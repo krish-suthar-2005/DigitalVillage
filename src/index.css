@@ -6,6 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+
 @layer base {
   :root {
     /* Core Theme Colors */
@@ -16,7 +17,7 @@
     --color-secondary-light: 158 60% 50%;
     --color-accent: 38 92% 50%;
     --color-accent-light: 38 90% 60%;
-    
+
     /* Background & Surface */
     --background: 210 20% 98%;
     --foreground: 215 25% 15%;
@@ -24,7 +25,7 @@
     --card-foreground: 215 28% 17%;
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
-    
+
     /* UI Elements */
     --primary: var(--color-primary);
     --primary-foreground: 0 0% 100%;
@@ -34,7 +35,7 @@
     --muted-foreground: 215 15% 45%;
     --accent: var(--color-accent);
     --accent-foreground: 215 25% 15%;
-    
+
     /* State Colors */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -44,13 +45,13 @@
     --warning-foreground: 38 92% 15%;
     --info: 199 89% 48%;
     --info-foreground: 0 0% 100%;
-    
+
     /* Borders & Inputs */
     --border: 214 20% 88%;
     --input: 214 20% 88%;
     --ring: var(--color-primary);
     --radius: 0.5rem;
-    
+
     /* Sidebar */
     --sidebar-background: 215 25% 97%;
     --sidebar-foreground: 215 25% 27%;
@@ -60,21 +61,21 @@
     --sidebar-accent-foreground: 215 28% 17%;
     --sidebar-border: 215 20% 90%;
     --sidebar-ring: 210 70% 45%;
-    
+
     /* Radius */
     --radius: 0.5rem;
-    
+
     /* Accessibility */
     --font-scale: 1;
     --line-height-scale: 1.6;
     --letter-spacing: 0em;
     --word-spacing: 0em;
-    
+
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--color-primary)) 0%, hsl(var(--color-primary-light)) 100%);
     --gradient-hero: linear-gradient(180deg, hsl(210 25% 97%) 0%, hsl(199 30% 95%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
-    
+
     /* Shadows */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
@@ -86,36 +87,36 @@
     --primary: 210 70% 55%;
     --primary-foreground: 210 70% 10%;
     --primary-hover: 210 70% 50%;
-    
+
     --secondary: 215 20% 18%;
     --secondary-foreground: 215 15% 85%;
     --secondary-hover: 215 20% 22%;
-    
+
     --accent: 38 90% 55%;
     --accent-foreground: 38 90% 10%;
     --accent-hover: 38 90% 50%;
-    
+
     --background: 215 28% 9%;
     --foreground: 210 20% 95%;
-    
+
     --card: 215 25% 12%;
     --card-foreground: 210 20% 95%;
     --popover: 215 25% 12%;
     --popover-foreground: 210 20% 95%;
-    
+
     --muted: 215 20% 18%;
     --muted-foreground: 215 15% 60%;
-    
+
     --border: 215 20% 20%;
     --input: 215 20% 20%;
     --ring: 210 70% 55%;
-    
+
     --sidebar-background: 215 28% 11%;
     --sidebar-foreground: 210 20% 90%;
     --sidebar-accent: 215 25% 16%;
     --sidebar-accent-foreground: 210 20% 95%;
     --sidebar-border: 215 20% 18%;
-    
+
     --gradient-hero: linear-gradient(180deg, hsl(215 28% 10%) 0%, hsl(215 25% 12%) 100%);
   }
 
@@ -140,7 +141,7 @@
   /* ===========================================
      FESTIVAL THEMES - Applied via data-theme
      =========================================== */
-  
+
   /* Republic Day - Saffron, White, Green */
   [data-theme="republic-day"] {
     --primary: 24 90% 50%;
@@ -295,6 +296,7 @@
   .inverted {
     filter: invert(1) hue-rotate(180deg);
   }
+
   .inverted img,
   .inverted video {
     filter: invert(1) hue-rotate(180deg);
@@ -355,16 +357,19 @@
     @apply absolute -top-10 left-4 z-50 bg-primary text-primary-foreground px-4 py-2 rounded-md;
     transition: top 0.2s;
   }
+
   .skip-link:focus {
     @apply top-4;
   }
 }
 
 @layer components {
+
   /* Button variants */
   .btn-primary {
     @apply bg-primary text-primary-foreground transition-colors;
   }
+
   .btn-primary:hover {
     background-color: hsl(var(--primary-hover, var(--primary)) / 0.9);
   }
@@ -372,6 +377,7 @@
   .btn-secondary {
     @apply bg-secondary text-secondary-foreground transition-colors;
   }
+
   .btn-secondary:hover {
     background-color: hsl(var(--secondary-hover, var(--secondary)) / 0.8);
   }
@@ -379,6 +385,7 @@
   .btn-accent {
     @apply bg-accent text-accent-foreground transition-colors;
   }
+
   .btn-accent:hover {
     background-color: hsl(var(--accent-hover, var(--accent)) / 0.9);
   }
@@ -398,15 +405,19 @@
   .status-badge {
     @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
   }
+
   .status-new {
     @apply bg-info/15 text-info;
   }
+
   .status-progress {
     @apply bg-warning/15 text-warning;
   }
+
   .status-completed {
     @apply bg-success/15 text-success;
   }
+
   .status-rejected {
     @apply bg-destructive/15 text-destructive;
   }
@@ -415,6 +426,7 @@
   .nav-link {
     @apply flex items-center gap-3 px-3 py-2 rounded-md text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors;
   }
+
   .nav-link-active {
     @apply bg-sidebar-accent text-sidebar-primary font-medium;
   }
@@ -423,6 +435,7 @@
   .page-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6;
   }
+
   .grid-cards {
     @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
   }
@@ -431,12 +444,14 @@
   .form-label {
     @apply block text-sm font-medium text-foreground mb-1.5;
   }
+
   .form-input {
     @apply w-full px-3 py-2 border border-input rounded-md bg-background text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-ring focus:border-transparent transition-colors;
   }
 }
 
 @layer utilities {
+
   /* Text gradient using primary color */
   .text-gradient {
     @apply bg-clip-text text-transparent;
@@ -447,9 +462,11 @@
   .animate-fade-in {
     animation: fadeIn 0.5s ease-out forwards;
   }
+
   .animate-slide-up {
     animation: slideUp 0.5s ease-out forwards;
   }
+
   .animate-scale-in {
     animation: scaleIn 0.3s ease-out forwards;
   }
@@ -463,6 +480,7 @@
       opacity: 1;
     }
   }
+
   @keyframes slideUp {
     from {
       opacity: 0;
@@ -474,6 +492,7 @@
       transform: translateY(0);
     }
   }
+
   @keyframes scaleIn {
     from {
       opacity: 0;

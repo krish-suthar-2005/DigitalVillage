@@ -23,14 +23,14 @@ export function ThemePicker() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
-          'fixed right-4 top-1/3 z-50 p-3 rounded-full shadow-lg transition-all duration-200',
+          'fixed right-4 bottom-36 z-50 p-4 rounded-full shadow-lg transition-all duration-200',
           'hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
           'bg-card text-foreground border border-border hover:border-primary/50'
         )}
         aria-label="Open theme settings"
         aria-expanded={isOpen}
       >
-        <Palette className="w-5 h-5" />
+        <Palette className="w-9 h-9" />
       </button>
 
       {/* Backdrop */}

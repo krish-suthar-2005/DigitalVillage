@@ -35,11 +35,11 @@ export function AccessibilityToolbar() {
       {/* Floating trigger button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed right-4 top-1/2 -translate-y-1/2 z-50 bg-primary text-primary-foreground p-3 rounded-full shadow-lg hover:shadow-glow transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+        className="fixed right-4 bottom-0 -translate-y-1/2 z-50 bg-primary text-primary-foreground p-4 rounded-full shadow-lg hover:shadow-glow transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
         aria-label="Open accessibility menu"
         aria-expanded={isOpen}
       >
-        <Accessibility className="w-6 h-6" />
+        <img src="icons/gujarat_map.svg" className="w-9 h-9" alt="gujarat map svg" />
       </button>
 
       {/* Overlay */}
@@ -150,7 +150,7 @@ export function AccessibilityToolbar() {
             {/* Toggle Options */}
             <section className="space-y-3">
               <h3 className="text-sm font-medium text-muted-foreground mb-3">Display Options</h3>
-              
+
               <ToggleOption
                 icon={<Link2 className="w-4 h-4" />}
                 label="Highlight Links"

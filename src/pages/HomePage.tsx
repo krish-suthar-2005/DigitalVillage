@@ -92,7 +92,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="page-container -mt-8 relative z-20">
+      <section className="page-container mt-8 relative z-20">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard
             title={t('activeSchemes')}
@@ -161,7 +161,7 @@ export default function HomePage() {
                   <div className={cn(
                     'w-2 rounded-full flex-shrink-0',
                     announcement.type === 'EMERGENCY' ? 'bg-destructive' :
-                    announcement.type === 'MEETING' ? 'bg-warning' : 'bg-info'
+                      announcement.type === 'MEETING' ? 'bg-warning' : 'bg-info'
                   )} />
                   <div className="flex-1 min-w-0">
                     <h3 className="font-medium text-foreground text-sm line-clamp-1">

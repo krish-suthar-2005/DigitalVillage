@@ -82,10 +82,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   const applyThemeToCss = (t: ThemeSettings) => {
     const root = document.documentElement;
-    
+
     // Remove existing theme classes
     root.classList.remove('dark', 'high-contrast');
-    
+
     if (t.currentThemeName === 'dark') {
       root.classList.add('dark');
     } else if (t.currentThemeName === 'high-contrast') {
@@ -96,7 +96,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.style.setProperty('--color-primary', t.primaryColor);
     root.style.setProperty('--color-secondary', t.secondaryColor);
     root.style.setProperty('--radius', `${0.5 * t.borderRadiusScale}rem`);
-    
+
     // Font scale is handled via accessibility
   };
 

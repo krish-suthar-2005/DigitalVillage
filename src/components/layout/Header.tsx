@@ -51,7 +51,7 @@ const navItems = [
 const LiveUserCounter = memo(function LiveUserCounter() {
   const { count, isLoading } = useLiveUserCount();
   const { t } = useTranslation();
-  
+
   if (isLoading) {
     return (
       <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-muted rounded-full animate-pulse">
@@ -60,9 +60,9 @@ const LiveUserCounter = memo(function LiveUserCounter() {
       </div>
     );
   }
-  
+
   return (
-    <div 
+    <div
       className="flex items-center gap-1.5 px-2.5 py-1.5 bg-success/10 rounded-full border border-success/20"
       title={t('usersOnline')}
     >
@@ -97,9 +97,10 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-card/95 backdrop-blur-sm border-b border-border shadow-sm">
+
       {/* Skip link for accessibility */}
       <a href="#main-content" className="skip-link">
-        {t('skipToContent')}
+        {t('skipToContent')} <p className='text-sm'>{t('{im In Header File}')}</p>
       </a>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,134 +117,136 @@ export function Header() {
           </Link>
 
           {/* Center: Village & Language selectors (desktop) */}
-          <div className="hidden md:flex items-center gap-3">
-            {/* Village Selector */}
-            <div className="relative">
+          <div className='flex gap-3'>
+            <div className="hidden md:flex items-center gap-3">
+              {/* Village Selector */}
+              <div className="relative">
+                <button
+                  onClick={() => {
+                    setVillageDropdownOpen(!villageDropdownOpen);
+                    setLangDropdownOpen(false);
+                  }}
+                  className="flex items-center gap-2 px-3 py-2 bg-muted rounded-lg hover:bg-muted/80 transition-colors"
+                  aria-expanded={villageDropdownOpen}
+                  aria-haspopup="listbox"
+                >
+                  <MapPin className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium">
+                    {selectedVillage ? selectedVillage.name : t('selectVillage')}
+                  </span>
+                  <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", villageDropdownOpen && "rotate-180")} />
+                </button>
+
+                {villageDropdownOpen && (
+                  <>
+                    <div
+                      className="fixed inset-0 z-10"
+                      onClick={() => setVillageDropdownOpen(false)}
+                    />
+                    <div className="absolute top-full mt-2 left-0 w-48 bg-card border border-border rounded-lg shadow-lg z-20 py-1 max-h-64 overflow-y-auto">
+                      {villages.map((village) => (
+                        <button
+                          key={village.id}
+                          onClick={() => {
+                            setSelectedVillage(village);
+                            setVillageDropdownOpen(false);
+                          }}
+                          className={cn(
+                            'w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors',
+                            selectedVillage?.id === village.id && 'bg-muted font-medium text-primary'
+                          )}
+                        >
+                          {village.name}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Language Selector */}
+              <div className="relative">
+                <button
+                  onClick={() => {
+                    setLangDropdownOpen(!langDropdownOpen);
+                    setVillageDropdownOpen(false);
+                  }}
+                  className="flex items-center gap-2 px-3 py-2 bg-muted rounded-lg hover:bg-muted/80 transition-colors"
+                  aria-expanded={langDropdownOpen}
+                  aria-haspopup="listbox"
+                >
+                  <Globe className="w-4 h-4 text-primary" />
+                  <span className="text-sm font-medium">
+                    {languages.find(l => l.code === language)?.nativeName}
+                  </span>
+                  <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", langDropdownOpen && "rotate-180")} />
+                </button>
+
+                {langDropdownOpen && (
+                  <>
+                    <div
+                      className="fixed inset-0 z-10"
+                      onClick={() => setLangDropdownOpen(false)}
+                    />
+                    <div className="absolute top-full mt-2 left-0 w-44 bg-card border border-border rounded-lg shadow-lg z-20 py-1">
+                      {languages.map((lang) => (
+                        <button
+                          key={lang.code}
+                          onClick={() => {
+                            setLanguage(lang.code);
+                            setLangDropdownOpen(false);
+                          }}
+                          className={cn(
+                            'w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors',
+                            language === lang.code && 'bg-muted font-medium text-primary'
+                          )}
+                        >
+                          <span className="font-medium">{lang.nativeName}</span>
+                          <span className="text-muted-foreground ml-1">({lang.name})</span>
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* Right: Live Counter, Notifications & Mobile menu toggle */}
+            <div className="flex items-center gap-2">
+              {/* Live User Counter */}
+              <div className="hidden sm:block">
+                <LiveUserCounter />
+              </div>
+
               <button
-                onClick={() => {
-                  setVillageDropdownOpen(!villageDropdownOpen);
-                  setLangDropdownOpen(false);
-                }}
-                className="flex items-center gap-2 px-3 py-2 bg-muted rounded-lg hover:bg-muted/80 transition-colors"
-                aria-expanded={villageDropdownOpen}
-                aria-haspopup="listbox"
+                className="relative p-2 hover:bg-muted rounded-lg transition-colors"
+                aria-label={t('notifications')}
               >
-                <MapPin className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium">
-                  {selectedVillage ? selectedVillage.name : t('selectVillage')}
-                </span>
-                <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", villageDropdownOpen && "rotate-180")} />
+                <Bell className="w-5 h-5 text-foreground" />
+                <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full" />
               </button>
 
-              {villageDropdownOpen && (
-                <>
-                  <div
-                    className="fixed inset-0 z-10"
-                    onClick={() => setVillageDropdownOpen(false)}
-                  />
-                  <div className="absolute top-full mt-2 left-0 w-48 bg-card border border-border rounded-lg shadow-lg z-20 py-1 max-h-64 overflow-y-auto">
-                    {villages.map((village) => (
-                      <button
-                        key={village.id}
-                        onClick={() => {
-                          setSelectedVillage(village);
-                          setVillageDropdownOpen(false);
-                        }}
-                        className={cn(
-                          'w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors',
-                          selectedVillage?.id === village.id && 'bg-muted font-medium text-primary'
-                        )}
-                      >
-                        {village.name}
-                      </button>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-
-            {/* Language Selector */}
-            <div className="relative">
               <button
                 onClick={() => {
-                  setLangDropdownOpen(!langDropdownOpen);
-                  setVillageDropdownOpen(false);
+                  setMobileMenuOpen(!mobileMenuOpen);
+                  closeAllDropdowns();
                 }}
-                className="flex items-center gap-2 px-3 py-2 bg-muted rounded-lg hover:bg-muted/80 transition-colors"
-                aria-expanded={langDropdownOpen}
-                aria-haspopup="listbox"
+                className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
+                aria-label="Toggle menu"
+                aria-expanded={mobileMenuOpen}
               >
-                <Globe className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium">
-                  {languages.find(l => l.code === language)?.nativeName}
-                </span>
-                <ChevronDown className={cn("w-4 h-4 text-muted-foreground transition-transform", langDropdownOpen && "rotate-180")} />
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
               </button>
-
-              {langDropdownOpen && (
-                <>
-                  <div
-                    className="fixed inset-0 z-10"
-                    onClick={() => setLangDropdownOpen(false)}
-                  />
-                  <div className="absolute top-full mt-2 left-0 w-44 bg-card border border-border rounded-lg shadow-lg z-20 py-1">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setLanguage(lang.code);
-                          setLangDropdownOpen(false);
-                        }}
-                        className={cn(
-                          'w-full text-left px-4 py-2 text-sm hover:bg-muted transition-colors',
-                          language === lang.code && 'bg-muted font-medium text-primary'
-                        )}
-                      >
-                        <span className="font-medium">{lang.nativeName}</span>
-                        <span className="text-muted-foreground ml-1">({lang.name})</span>
-                      </button>
-                    ))}
-                  </div>
-                </>
-              )}
             </div>
-          </div>
-
-          {/* Right: Live Counter, Notifications & Mobile menu toggle */}
-          <div className="flex items-center gap-2">
-            {/* Live User Counter */}
-            <div className="hidden sm:block">
-              <LiveUserCounter />
-            </div>
-            
-            <button
-              className="relative p-2 hover:bg-muted rounded-lg transition-colors"
-              aria-label={t('notifications')}
-            >
-              <Bell className="w-5 h-5 text-foreground" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full" />
-            </button>
-
-            <button
-              onClick={() => {
-                setMobileMenuOpen(!mobileMenuOpen);
-                closeAllDropdowns();
-              }}
-              className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
-              aria-label="Toggle menu"
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
           </div>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1 py-2 overflow-x-auto scrollbar-none">
+        <nav className="hidden md:flex items-center gap-1 py-2  scrollbar-none">
           {navItems.slice(0, 8).map((item) => (
             <Link
               key={item.path}
@@ -291,7 +294,7 @@ export function Header() {
           <div className="p-4 border-b border-border flex justify-center">
             <LiveUserCounter />
           </div>
-          
+
           {/* Mobile Village & Language */}
           <div className="p-4 border-b border-border grid grid-cols-2 gap-3">
             <select
