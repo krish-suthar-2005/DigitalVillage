@@ -4,7 +4,18 @@ import { MainLayout } from '@/components/layout/MainLayout';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from '@/hooks/useTranslation';
 
-const priasoftLinks = [
+import type { Translations } from '@/lib/translations';
+
+interface PriasoftLink {
+  id: number;
+  icon: React.ComponentType<{ className?: string }>;
+  titleKey: keyof Translations;
+  descKey: keyof Translations;
+  url: string;
+  color: string;
+}
+
+const priasoftLinks: PriasoftLink[] = [
   {
     id: 1,
     icon: DollarSign,

@@ -22,6 +22,13 @@ import AmenitiesPage from "./pages/AmenitiesPage";
 import AnnouncementsPage from "./pages/AnnouncementsPage";
 import ServicesPage from "./pages/ServicesPage";
 import { FinancePage, TendersPage, AssetsPage, TalukaPage } from "./pages/OtherPages";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import ContactPage from "./pages/ContactPage";
+import GalleryPage from "./pages/GalleryPage";
+import MarketPage from "./pages/MarketPage";
+import PriasoftPage from "./pages/PriasoftPage";
+import ProfilePage from "./pages/ProfilePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -54,6 +61,13 @@ const App = () => (
                   <Route path="/tenders" element={<TendersPage />} />
                   <Route path="/assets" element={<AssetsPage />} />
                   <Route path="/taluka" element={<TalukaPage />} />
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/gallery" element={<GalleryPage />} />
+                  <Route path="/market" element={<MarketPage />} />
+                  <Route path="/priasoft" element={<PriasoftPage />} />
+                  <Route path="/profile" element={<ProfilePage />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </BrowserRouter>

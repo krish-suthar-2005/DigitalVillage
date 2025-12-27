@@ -32,6 +32,8 @@ export interface Translations {
   allStatus: string;
   allTypes: string;
   allLevels: string;
+  previous: string;
+  next: string;
   
   // Header & Navigation
   home: string;
@@ -52,6 +54,12 @@ export interface Translations {
   more: string;
   notifications: string;
   skipToContent: string;
+  login: string;
+  register: string;
+  gallery: string;
+  market: string;
+  priasoft: string;
+  profile: string;
   
   // Site Identity
   gramPanchayat: string;
@@ -275,6 +283,118 @@ export interface Translations {
   systemThemes: string;
   festivalThemes: string;
   enableAnimations: string;
+  
+  // Login Page
+  loginSubtitle: string;
+  email: string;
+  password: string;
+  enterEmail: string;
+  enterPassword: string;
+  showPassword: string;
+  hidePassword: string;
+  forgotPassword: string;
+  loggingIn: string;
+  loginSuccess: string;
+  welcomeBack: string;
+  noAccount: string;
+  registerNow: string;
+  
+  // Register Page
+  registerSubtitle: string;
+  fullName: string;
+  enterFullName: string;
+  enterPhone: string;
+  confirmPassword: string;
+  confirmYourPassword: string;
+  registering: string;
+  registrationSuccess: string;
+  accountCreated: string;
+  alreadyHaveAccount: string;
+  loginNow: string;
+  
+  // Contact Page
+  contactSubtitle: string;
+  contactInfo: string;
+  address: string;
+  officeHours: string;
+  mondayToFriday: string;
+  saturday: string;
+  needHelp: string;
+  needHelpDesc: string;
+  callNow: string;
+  sendMessage: string;
+  subject: string;
+  enterSubject: string;
+  message: string;
+  enterMessage: string;
+  sending: string;
+  messageSent: string;
+  messageSuccessDesc: string;
+  
+  // Gallery Page
+  gallerySubtitle: string;
+  galleryEvents: string;
+  galleryHeritage: string;
+  galleryNature: string;
+  noPhotosFound: string;
+  
+  // Market Page
+  villageMarket: string;
+  marketSubtitle: string;
+  marketLocation: string;
+  villageChowk: string;
+  marketTiming: string;
+  helplineNumber: string;
+  searchProducts: string;
+  vegetables: string;
+  grains: string;
+  dairy: string;
+  handicrafts: string;
+  outOfStock: string;
+  available: string;
+  soldBy: string;
+  call: string;
+  noProductsFound: string;
+  
+  // Priasoft Page
+  priasoftSubtitle: string;
+  whatIsPriasoft: string;
+  priasoftDescription: string;
+  panchayatsUsing: string;
+  digitalTransactions: string;
+  onlineAccess: string;
+  priasoftModules: string;
+  priasoftBudget: string;
+  priasoftBudgetDesc: string;
+  priasoftAccounts: string;
+  priasoftAccountsDesc: string;
+  priasoftPayroll: string;
+  priasoftPayrollDesc: string;
+  priasoftWorks: string;
+  priasoftWorksDesc: string;
+  priasoftAssets: string;
+  priasoftAssetsDesc: string;
+  priasoftAudit: string;
+  priasoftAuditDesc: string;
+  accessModule: string;
+  accessPriasoft: string;
+  accessPriasoftDesc: string;
+  goToPriasoft: string;
+  
+  // Profile Page
+  changePhoto: string;
+  memberSince: string;
+  editProfile: string;
+  logout: string;
+  yourActivity: string;
+  quickLinks: string;
+  myComplaints: string;
+  appliedSchemes: string;
+  settings: string;
+  personalInformation: string;
+  profileUpdated: string;
+  profileUpdateSuccess: string;
+  saveChanges: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -548,6 +668,128 @@ const translations: Record<Language, Translations> = {
     systemThemes: 'System Themes',
     festivalThemes: 'Festival Themes',
     enableAnimations: 'Enable Animations',
+    
+    // New keys
+    previous: 'Previous',
+    next: 'Next',
+    login: 'Login',
+    register: 'Register',
+    gallery: 'Gallery',
+    market: 'Market',
+    priasoft: 'PRIASOFT',
+    profile: 'Profile',
+    
+    // Login Page
+    loginSubtitle: 'Sign in to access your account',
+    email: 'Email',
+    password: 'Password',
+    enterEmail: 'Enter your email',
+    enterPassword: 'Enter your password',
+    showPassword: 'Show password',
+    hidePassword: 'Hide password',
+    forgotPassword: 'Forgot password?',
+    loggingIn: 'Logging in...',
+    loginSuccess: 'Login Successful',
+    welcomeBack: 'Welcome back!',
+    noAccount: "Don't have an account?",
+    registerNow: 'Register now',
+    
+    // Register Page
+    registerSubtitle: 'Create your account to get started',
+    fullName: 'Full Name',
+    enterFullName: 'Enter your full name',
+    enterPhone: 'Enter your phone number',
+    confirmPassword: 'Confirm Password',
+    confirmYourPassword: 'Confirm your password',
+    registering: 'Registering...',
+    registrationSuccess: 'Registration Successful',
+    accountCreated: 'Your account has been created',
+    alreadyHaveAccount: 'Already have an account?',
+    loginNow: 'Login now',
+    
+    // Contact Page
+    contactSubtitle: 'Get in touch with the Gram Panchayat office',
+    contactInfo: 'Contact Information',
+    address: 'Address',
+    officeHours: 'Office Hours',
+    mondayToFriday: 'Monday to Friday',
+    saturday: 'Saturday',
+    needHelp: 'Need Immediate Help?',
+    needHelpDesc: 'Call our helpline for urgent matters',
+    callNow: 'Call Now',
+    sendMessage: 'Send Message',
+    subject: 'Subject',
+    enterSubject: 'Enter subject',
+    message: 'Message',
+    enterMessage: 'Write your message here...',
+    sending: 'Sending...',
+    messageSent: 'Message Sent',
+    messageSuccessDesc: 'We will get back to you soon',
+    
+    // Gallery Page
+    gallerySubtitle: 'Explore photos from village events, heritage sites, and nature',
+    galleryEvents: 'Events',
+    galleryHeritage: 'Heritage',
+    galleryNature: 'Nature',
+    noPhotosFound: 'No photos found',
+    
+    // Market Page
+    villageMarket: 'Village Market',
+    marketSubtitle: 'Buy fresh produce and local products from village farmers and artisans',
+    marketLocation: 'Market Location',
+    villageChowk: 'Village Chowk',
+    marketTiming: 'Market Timing',
+    helplineNumber: 'Helpline Number',
+    searchProducts: 'Search products...',
+    vegetables: 'Vegetables',
+    grains: 'Grains',
+    dairy: 'Dairy',
+    handicrafts: 'Handicrafts',
+    outOfStock: 'Out of Stock',
+    available: 'Available',
+    soldBy: 'Sold by',
+    call: 'Call',
+    noProductsFound: 'No products found',
+    
+    // Priasoft Page
+    priasoftSubtitle: 'Panchayati Raj Institutions Accounting Software',
+    whatIsPriasoft: 'What is PRIASOFT?',
+    priasoftDescription: 'PRIASOFT is an integrated accounting software for Panchayati Raj Institutions developed by the Government of Gujarat. It enables transparent financial management, budget tracking, and digital governance at the grassroots level.',
+    panchayatsUsing: 'Panchayats Using',
+    digitalTransactions: 'Digital Transactions',
+    onlineAccess: 'Online Access',
+    priasoftModules: 'PRIASOFT Modules',
+    priasoftBudget: 'Budget Management',
+    priasoftBudgetDesc: 'Prepare and manage annual budgets online',
+    priasoftAccounts: 'Accounts',
+    priasoftAccountsDesc: 'Maintain books of accounts digitally',
+    priasoftPayroll: 'Payroll',
+    priasoftPayrollDesc: 'Manage staff salaries and payments',
+    priasoftWorks: 'Works Management',
+    priasoftWorksDesc: 'Track development works and expenditure',
+    priasoftAssets: 'Asset Management',
+    priasoftAssetsDesc: 'Inventory and manage panchayat assets',
+    priasoftAudit: 'Audit Trail',
+    priasoftAuditDesc: 'Complete audit trail for all transactions',
+    accessModule: 'Access Module',
+    accessPriasoft: 'Access PRIASOFT Portal',
+    accessPriasoftDesc: 'Login to the official PRIASOFT portal to manage your panchayat finances',
+    goToPriasoft: 'Go to PRIASOFT',
+    
+    // Profile Page
+    changePhoto: 'Change Photo',
+    memberSince: 'Member Since',
+    editProfile: 'Edit Profile',
+    logout: 'Logout',
+    yourActivity: 'Your Activity',
+    quickLinks: 'Quick Links',
+    myComplaints: 'My Complaints',
+    appliedSchemes: 'Applied Schemes',
+    settings: 'Settings',
+    personalInformation: 'Personal Information',
+    profileUpdated: 'Profile Updated',
+    profileUpdateSuccess: 'Your profile has been updated successfully',
+    saveChanges: 'Save Changes',
   },
   
   gu: {
@@ -820,6 +1062,128 @@ const translations: Record<Language, Translations> = {
     systemThemes: 'સિસ્ટમ થીમ્સ',
     festivalThemes: 'તહેવાર થીમ્સ',
     enableAnimations: 'એનિમેશન સક્ષમ કરો',
+    
+    // New keys
+    previous: 'પાછલું',
+    next: 'આગળ',
+    login: 'લૉગિન',
+    register: 'નોંધણી',
+    gallery: 'ગેલેરી',
+    market: 'બજાર',
+    priasoft: 'પ્રિયાસોફ્ટ',
+    profile: 'પ્રોફાઇલ',
+    
+    // Login Page
+    loginSubtitle: 'તમારા ખાતામાં પ્રવેશ કરો',
+    email: 'ઇમેઇલ',
+    password: 'પાસવર્ડ',
+    enterEmail: 'તમારો ઇમેઇલ દાખલ કરો',
+    enterPassword: 'તમારો પાસવર્ડ દાખલ કરો',
+    showPassword: 'પાસવર્ડ બતાવો',
+    hidePassword: 'પાસવર્ડ છુપાવો',
+    forgotPassword: 'પાસવર્ડ ભૂલી ગયા?',
+    loggingIn: 'લૉગિન થઈ રહ્યું છે...',
+    loginSuccess: 'લૉગિન સફળ',
+    welcomeBack: 'પાછા આવવા બદલ આભાર!',
+    noAccount: 'ખાતું નથી?',
+    registerNow: 'હમણાં નોંધણી કરો',
+    
+    // Register Page
+    registerSubtitle: 'શરૂ કરવા માટે તમારું ખાતું બનાવો',
+    fullName: 'પૂરું નામ',
+    enterFullName: 'તમારું પૂરું નામ દાખલ કરો',
+    enterPhone: 'તમારો ફોન નંબર દાખલ કરો',
+    confirmPassword: 'પાસવર્ડ પુષ્ટિ કરો',
+    confirmYourPassword: 'તમારો પાસવર્ડ પુષ્ટિ કરો',
+    registering: 'નોંધણી થઈ રહી છે...',
+    registrationSuccess: 'નોંધણી સફળ',
+    accountCreated: 'તમારું ખાતું બનાવવામાં આવ્યું છે',
+    alreadyHaveAccount: 'પહેલેથી ખાતું છે?',
+    loginNow: 'હમણાં લૉગિન કરો',
+    
+    // Contact Page
+    contactSubtitle: 'ગ્રામ પંચાયત કાર્યાલય સાથે સંપર્ક કરો',
+    contactInfo: 'સંપર્ક માહિતી',
+    address: 'સરનામું',
+    officeHours: 'કાર્યાલય સમય',
+    mondayToFriday: 'સોમવાર થી શુક્રવાર',
+    saturday: 'શનિવાર',
+    needHelp: 'તાત્કાલિક મદદની જરૂર છે?',
+    needHelpDesc: 'તાત્કાલિક બાબતો માટે અમારી હેલ્પલાઇન પર કૉલ કરો',
+    callNow: 'હમણાં કૉલ કરો',
+    sendMessage: 'સંદેશ મોકલો',
+    subject: 'વિષય',
+    enterSubject: 'વિષય દાખલ કરો',
+    message: 'સંદેશ',
+    enterMessage: 'તમારો સંદેશ અહીં લખો...',
+    sending: 'મોકલી રહ્યું છે...',
+    messageSent: 'સંદેશ મોકલ્યો',
+    messageSuccessDesc: 'અમે ટૂંક સમયમાં તમારો સંપર્ક કરીશું',
+    
+    // Gallery Page
+    gallerySubtitle: 'ગામના કાર્યક્રમો, વારસા સ્થળો અને પ્રકૃતિના ફોટા જુઓ',
+    galleryEvents: 'કાર્યક્રમો',
+    galleryHeritage: 'વારસો',
+    galleryNature: 'પ્રકૃતિ',
+    noPhotosFound: 'કોઈ ફોટા મળ્યા નથી',
+    
+    // Market Page
+    villageMarket: 'ગામનું બજાર',
+    marketSubtitle: 'ગામના ખેડૂતો અને કારીગરો પાસેથી તાજી પેદાશો અને સ્થાનિક ઉત્પાદનો ખરીદો',
+    marketLocation: 'બજારનું સ્થળ',
+    villageChowk: 'ગામ ચોક',
+    marketTiming: 'બજારનો સમય',
+    helplineNumber: 'હેલ્પલાઇન નંબર',
+    searchProducts: 'ઉત્પાદનો શોધો...',
+    vegetables: 'શાકભાજી',
+    grains: 'અનાજ',
+    dairy: 'ડેરી',
+    handicrafts: 'હસ્તકલા',
+    outOfStock: 'સ્ટોકમાં નથી',
+    available: 'ઉપલબ્ધ',
+    soldBy: 'વેચનાર',
+    call: 'કૉલ',
+    noProductsFound: 'કોઈ ઉત્પાદનો મળ્યા નથી',
+    
+    // Priasoft Page
+    priasoftSubtitle: 'પંચાયતી રાજ સંસ્થાઓ એકાઉન્ટિંગ સોફ્ટવેર',
+    whatIsPriasoft: 'PRIASOFT શું છે?',
+    priasoftDescription: 'PRIASOFT એ ગુજરાત સરકાર દ્વારા વિકસાવવામાં આવેલ પંચાયતી રાજ સંસ્થાઓ માટે એકીકૃત એકાઉન્ટિંગ સોફ્ટવેર છે. તે પાયાના સ્તરે પારદર્શક નાણાકીય વ્યવસ્થાપન, બજેટ ટ્રેકિંગ અને ડિજિટલ ગવર્નન્સ સક્ષમ કરે છે.',
+    panchayatsUsing: 'ઉપયોગ કરતી પંચાયતો',
+    digitalTransactions: 'ડિજિટલ વ્યવહારો',
+    onlineAccess: 'ઓનલાઇન એક્સેસ',
+    priasoftModules: 'PRIASOFT મોડ્યુલ્સ',
+    priasoftBudget: 'બજેટ વ્યવસ્થાપન',
+    priasoftBudgetDesc: 'વાર્ષિક બજેટ ઓનલાઇન તૈયાર અને વ્યવસ્થાપિત કરો',
+    priasoftAccounts: 'ખાતા',
+    priasoftAccountsDesc: 'ડિજિટલ રીતે હિસાબના પુસ્તકો જાળવો',
+    priasoftPayroll: 'પેરોલ',
+    priasoftPayrollDesc: 'સ્ટાફના પગાર અને ચુકવણીઓનું વ્યવસ્થાપન કરો',
+    priasoftWorks: 'કામ વ્યવસ્થાપન',
+    priasoftWorksDesc: 'વિકાસ કામો અને ખર્ચ ટ્રેક કરો',
+    priasoftAssets: 'અસ્કયામત વ્યવસ્થાપન',
+    priasoftAssetsDesc: 'પંચાયત અસ્કયામતોની યાદી અને વ્યવસ્થાપન',
+    priasoftAudit: 'ઓડિટ ટ્રેલ',
+    priasoftAuditDesc: 'તમામ વ્યવહારો માટે સંપૂર્ણ ઓડિટ ટ્રેલ',
+    accessModule: 'મોડ્યુલ એક્સેસ કરો',
+    accessPriasoft: 'PRIASOFT પોર્ટલ એક્સેસ કરો',
+    accessPriasoftDesc: 'તમારી પંચાયતના નાણા વ્યવસ્થાપન માટે સત્તાવાર PRIASOFT પોર્ટલમાં લૉગિન કરો',
+    goToPriasoft: 'PRIASOFT પર જાઓ',
+    
+    // Profile Page
+    changePhoto: 'ફોટો બદલો',
+    memberSince: 'સભ્ય છે ત્યારથી',
+    editProfile: 'પ્રોફાઇલ સંપાદિત કરો',
+    logout: 'લૉગઆઉટ',
+    yourActivity: 'તમારી પ્રવૃત્તિ',
+    quickLinks: 'ઝડપી લિંક્સ',
+    myComplaints: 'મારી ફરિયાદો',
+    appliedSchemes: 'લાગુ કરેલ યોજનાઓ',
+    settings: 'સેટિંગ્સ',
+    personalInformation: 'વ્યક્તિગત માહિતી',
+    profileUpdated: 'પ્રોફાઇલ અપડેટ થયું',
+    profileUpdateSuccess: 'તમારી પ્રોફાઇલ સફળતાપૂર્વક અપડેટ થઈ છે',
+    saveChanges: 'ફેરફારો સાચવો',
   },
   
   hi: {
@@ -1092,6 +1456,128 @@ const translations: Record<Language, Translations> = {
     systemThemes: 'सिस्टम थीम',
     festivalThemes: 'त्योहार थीम',
     enableAnimations: 'एनिमेशन सक्षम करें',
+    
+    // New keys
+    previous: 'पिछला',
+    next: 'अगला',
+    login: 'लॉग इन',
+    register: 'पंजीकरण',
+    gallery: 'गैलरी',
+    market: 'बाज़ार',
+    priasoft: 'प्रियासॉफ्ट',
+    profile: 'प्रोफ़ाइल',
+    
+    // Login Page
+    loginSubtitle: 'अपने खाते में प्रवेश करें',
+    email: 'ईमेल',
+    password: 'पासवर्ड',
+    enterEmail: 'अपना ईमेल दर्ज करें',
+    enterPassword: 'अपना पासवर्ड दर्ज करें',
+    showPassword: 'पासवर्ड दिखाएं',
+    hidePassword: 'पासवर्ड छुपाएं',
+    forgotPassword: 'पासवर्ड भूल गए?',
+    loggingIn: 'लॉग इन हो रहा है...',
+    loginSuccess: 'लॉग इन सफल',
+    welcomeBack: 'वापस स्वागत है!',
+    noAccount: 'खाता नहीं है?',
+    registerNow: 'अभी पंजीकरण करें',
+    
+    // Register Page
+    registerSubtitle: 'शुरू करने के लिए अपना खाता बनाएं',
+    fullName: 'पूरा नाम',
+    enterFullName: 'अपना पूरा नाम दर्ज करें',
+    enterPhone: 'अपना फोन नंबर दर्ज करें',
+    confirmPassword: 'पासवर्ड की पुष्टि करें',
+    confirmYourPassword: 'अपने पासवर्ड की पुष्टि करें',
+    registering: 'पंजीकरण हो रहा है...',
+    registrationSuccess: 'पंजीकरण सफल',
+    accountCreated: 'आपका खाता बना दिया गया है',
+    alreadyHaveAccount: 'पहले से खाता है?',
+    loginNow: 'अभी लॉग इन करें',
+    
+    // Contact Page
+    contactSubtitle: 'ग्राम पंचायत कार्यालय से संपर्क करें',
+    contactInfo: 'संपर्क जानकारी',
+    address: 'पता',
+    officeHours: 'कार्यालय समय',
+    mondayToFriday: 'सोमवार से शुक्रवार',
+    saturday: 'शनिवार',
+    needHelp: 'तुरंत मदद चाहिए?',
+    needHelpDesc: 'जरूरी मामलों के लिए हमारी हेल्पलाइन पर कॉल करें',
+    callNow: 'अभी कॉल करें',
+    sendMessage: 'संदेश भेजें',
+    subject: 'विषय',
+    enterSubject: 'विषय दर्ज करें',
+    message: 'संदेश',
+    enterMessage: 'अपना संदेश यहां लिखें...',
+    sending: 'भेज रहे हैं...',
+    messageSent: 'संदेश भेजा गया',
+    messageSuccessDesc: 'हम जल्द ही आपसे संपर्क करेंगे',
+    
+    // Gallery Page
+    gallerySubtitle: 'गांव के कार्यक्रमों, विरासत स्थलों और प्रकृति की तस्वीरें देखें',
+    galleryEvents: 'कार्यक्रम',
+    galleryHeritage: 'विरासत',
+    galleryNature: 'प्रकृति',
+    noPhotosFound: 'कोई फ़ोटो नहीं मिली',
+    
+    // Market Page
+    villageMarket: 'गांव का बाज़ार',
+    marketSubtitle: 'गांव के किसानों और कारीगरों से ताज़ी उपज और स्थानीय उत्पाद खरीदें',
+    marketLocation: 'बाज़ार का स्थान',
+    villageChowk: 'गांव चौक',
+    marketTiming: 'बाज़ार का समय',
+    helplineNumber: 'हेल्पलाइन नंबर',
+    searchProducts: 'उत्पाद खोजें...',
+    vegetables: 'सब्जियां',
+    grains: 'अनाज',
+    dairy: 'डेयरी',
+    handicrafts: 'हस्तशिल्प',
+    outOfStock: 'स्टॉक में नहीं',
+    available: 'उपलब्ध',
+    soldBy: 'विक्रेता',
+    call: 'कॉल',
+    noProductsFound: 'कोई उत्पाद नहीं मिला',
+    
+    // Priasoft Page
+    priasoftSubtitle: 'पंचायती राज संस्थाएं अकाउंटिंग सॉफ्टवेयर',
+    whatIsPriasoft: 'PRIASOFT क्या है?',
+    priasoftDescription: 'PRIASOFT गुजरात सरकार द्वारा विकसित पंचायती राज संस्थाओं के लिए एकीकृत अकाउंटिंग सॉफ्टवेयर है। यह जमीनी स्तर पर पारदर्शी वित्तीय प्रबंधन, बजट ट्रैकिंग और डिजिटल शासन सक्षम करता है।',
+    panchayatsUsing: 'उपयोग करने वाली पंचायतें',
+    digitalTransactions: 'डिजिटल लेनदेन',
+    onlineAccess: 'ऑनलाइन एक्सेस',
+    priasoftModules: 'PRIASOFT मॉड्यूल',
+    priasoftBudget: 'बजट प्रबंधन',
+    priasoftBudgetDesc: 'वार्षिक बजट ऑनलाइन तैयार और प्रबंधित करें',
+    priasoftAccounts: 'खाते',
+    priasoftAccountsDesc: 'डिजिटल रूप से खातों की पुस्तकें रखें',
+    priasoftPayroll: 'पेरोल',
+    priasoftPayrollDesc: 'कर्मचारियों के वेतन और भुगतान प्रबंधित करें',
+    priasoftWorks: 'कार्य प्रबंधन',
+    priasoftWorksDesc: 'विकास कार्यों और व्यय को ट्रैक करें',
+    priasoftAssets: 'संपत्ति प्रबंधन',
+    priasoftAssetsDesc: 'पंचायत संपत्तियों की सूची और प्रबंधन',
+    priasoftAudit: 'ऑडिट ट्रेल',
+    priasoftAuditDesc: 'सभी लेनदेन के लिए पूर्ण ऑडिट ट्रेल',
+    accessModule: 'मॉड्यूल एक्सेस करें',
+    accessPriasoft: 'PRIASOFT पोर्टल एक्सेस करें',
+    accessPriasoftDesc: 'अपनी पंचायत के वित्त प्रबंधन के लिए आधिकारिक PRIASOFT पोर्टल में लॉग इन करें',
+    goToPriasoft: 'PRIASOFT पर जाएं',
+    
+    // Profile Page
+    changePhoto: 'फोटो बदलें',
+    memberSince: 'सदस्य है तब से',
+    editProfile: 'प्रोफ़ाइल संपादित करें',
+    logout: 'लॉग आउट',
+    yourActivity: 'आपकी गतिविधि',
+    quickLinks: 'त्वरित लिंक',
+    myComplaints: 'मेरी शिकायतें',
+    appliedSchemes: 'आवेदित योजनाएं',
+    settings: 'सेटिंग्स',
+    personalInformation: 'व्यक्तिगत जानकारी',
+    profileUpdated: 'प्रोफ़ाइल अपडेट हुई',
+    profileUpdateSuccess: 'आपकी प्रोफ़ाइल सफलतापूर्वक अपडेट हो गई है',
+    saveChanges: 'परिवर्तन सहेजें',
   },
 };
 

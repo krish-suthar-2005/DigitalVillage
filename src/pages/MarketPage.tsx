@@ -109,7 +109,7 @@ export default function MarketPage() {
                 className="gap-2"
               >
                 <cat.icon className="w-4 h-4" />
-                {t(cat.label)}
+                {cat.id === 'all' ? t('all') : cat.id === 'vegetables' ? t('vegetables') : cat.id === 'grains' ? t('grains') : cat.id === 'dairy' ? t('dairy') : t('handicrafts')}
               </Button>
             ))}
           </div>

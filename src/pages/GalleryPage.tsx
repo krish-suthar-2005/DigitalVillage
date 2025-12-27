@@ -65,7 +65,7 @@ export default function GalleryPage() {
               size="sm"
               onClick={() => setSelectedCategory(cat)}
             >
-              {t(cat === 'all' ? 'all' : `gallery${cat.charAt(0).toUpperCase() + cat.slice(1)}`)}
+              {cat === 'all' ? t('all') : cat === 'events' ? t('galleryEvents') : cat === 'heritage' ? t('galleryHeritage') : t('galleryNature')}
             </Button>
           ))}
         </div>
