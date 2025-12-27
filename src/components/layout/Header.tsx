@@ -83,7 +83,7 @@ export function Header() {
   const [villageDropdownOpen, setVillageDropdownOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const { selectedVillage, setSelectedVillage, villages, language, setLanguage, languages } = useVillage();
-  const { t } = useTranslation();
+  const { t, translations } = useTranslation();
   const location = useLocation();
 
   const closeAllDropdowns = () => {
@@ -92,7 +92,8 @@ export function Header() {
   };
 
   const getNavLabel = (labelKey: string) => {
-    return t(labelKey as keyof typeof t);
+    const key = labelKey as keyof typeof translations;
+    return translations[key] || labelKey;
   };
 
   return (
@@ -100,7 +101,7 @@ export function Header() {
 
       {/* Skip link for accessibility */}
       <a href="#main-content" className="skip-link">
-        {t('skipToContent')} <p className='text-sm'>{t('{im In Header File}')}</p>
+        {t('skipToContent')}
       </a>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
