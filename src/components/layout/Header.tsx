@@ -23,6 +23,13 @@ import {
   Package,
   Landmark,
   Eye,
+  Image,
+  ShoppingBag,
+  Monitor,
+  Phone,
+  LogIn,
+  UserPlus,
+  User,
 } from 'lucide-react';
 import { useVillage } from '@/context/VillageContext';
 import { useTranslation } from '@/hooks/useTranslation';
@@ -35,6 +42,10 @@ const navItems = [
   { path: '/members', labelKey: 'members', icon: Users },
   { path: '/gram-sabha', labelKey: 'gramSabha', icon: Calendar },
   { path: '/development', labelKey: 'development', icon: HardHat },
+  { path: '/gallery', labelKey: 'gallery', icon: Image },
+  { path: '/market', labelKey: 'villageMarket', icon: ShoppingBag },
+  { path: '/priasoft', labelKey: 'priasoft', icon: Monitor },
+  { path: '/contact', labelKey: 'contact', icon: Phone },
   { path: '/complaints', labelKey: 'complaints', icon: MessageSquare },
   { path: '/events', labelKey: 'events', icon: PartyPopper },
   { path: '/attractions', labelKey: 'attractions', icon: MapPinned },
@@ -45,6 +56,9 @@ const navItems = [
   { path: '/tenders', labelKey: 'tenders', icon: FileCheck },
   { path: '/assets', labelKey: 'assets', icon: Package },
   { path: '/taluka', labelKey: 'taluka', icon: Landmark },
+  { path: '/login', labelKey: 'login', icon: LogIn },
+  { path: '/register', labelKey: 'register', icon: UserPlus },
+  { path: '/profile', labelKey: 'profile', icon: User },
 ] as const;
 
 // Live User Counter Component
