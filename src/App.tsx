@@ -9,7 +9,7 @@ import { VillageProvider } from "@/context/VillageContext";
 import { ThemeEngineProvider } from "@/context/ThemeEngineContext";
 import { ThemePicker } from "@/components/theme/ThemePicker";
 import { ThemeAnimations } from "@/components/theme/ThemeAnimations";
-
+import { OnboardingFlow } from "@/components/onboarding/OnboardingFlow";
 import HomePage from "./pages/HomePage";
 import SchemesPage from "./pages/SchemesPage";
 import MembersPage from "./pages/MembersPage";
@@ -44,33 +44,35 @@ const App = () => (
               <Sonner />
               <ThemeAnimations />
               <ThemePicker />
-              <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/schemes" element={<SchemesPage />} />
-                  <Route path="/members" element={<MembersPage />} />
-                  <Route path="/gram-sabha" element={<GramSabhaPage />} />
-                  <Route path="/development" element={<DevelopmentPage />} />
-                  <Route path="/complaints" element={<ComplaintsPage />} />
-                  <Route path="/events" element={<EventsPage />} />
-                  <Route path="/attractions" element={<AttractionsPage />} />
-                  <Route path="/amenities" element={<AmenitiesPage />} />
-                  <Route path="/announcements" element={<AnnouncementsPage />} />
-                  <Route path="/services" element={<ServicesPage />} />
-                  <Route path="/finance" element={<FinancePage />} />
-                  <Route path="/tenders" element={<TendersPage />} />
-                  <Route path="/assets" element={<AssetsPage />} />
-                  <Route path="/taluka" element={<TalukaPage />} />
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/register" element={<RegisterPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/gallery" element={<GalleryPage />} />
-                  <Route path="/market" element={<MarketPage />} />
-                  <Route path="/priasoft" element={<PriasoftPage />} />
-                  <Route path="/profile" element={<ProfilePage />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </BrowserRouter>
+              <OnboardingFlow>
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/schemes" element={<SchemesPage />} />
+                    <Route path="/members" element={<MembersPage />} />
+                    <Route path="/gram-sabha" element={<GramSabhaPage />} />
+                    <Route path="/development" element={<DevelopmentPage />} />
+                    <Route path="/complaints" element={<ComplaintsPage />} />
+                    <Route path="/events" element={<EventsPage />} />
+                    <Route path="/attractions" element={<AttractionsPage />} />
+                    <Route path="/amenities" element={<AmenitiesPage />} />
+                    <Route path="/announcements" element={<AnnouncementsPage />} />
+                    <Route path="/services" element={<ServicesPage />} />
+                    <Route path="/finance" element={<FinancePage />} />
+                    <Route path="/tenders" element={<TendersPage />} />
+                    <Route path="/assets" element={<AssetsPage />} />
+                    <Route path="/taluka" element={<TalukaPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/gallery" element={<GalleryPage />} />
+                    <Route path="/market" element={<MarketPage />} />
+                    <Route path="/priasoft" element={<PriasoftPage />} />
+                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </BrowserRouter>
+              </OnboardingFlow>
             </TooltipProvider>
           </VillageProvider>
         </AccessibilityProvider>
