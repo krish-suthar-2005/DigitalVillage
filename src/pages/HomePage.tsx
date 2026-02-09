@@ -15,6 +15,7 @@ import {
   Clock,
   CheckCircle2,
   AlertCircle,
+  MapPin,
 } from 'lucide-react';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { useVillage } from '@/context/VillageContext';
@@ -30,6 +31,7 @@ import {
   mockSchemes,
 } from '@/lib/mock-data';
 import { cn } from '@/lib/utils';
+import { getStoredOnboarding } from '@/lib/location-data';
 
 const quickLinks = [
   { to: '/schemes', labelKey: 'governmentSchemes', icon: FileText, color: 'bg-info/10 text-info' },
@@ -46,6 +48,7 @@ export default function HomePage() {
   const { selectedVillage, isLoading } = useVillage();
   const { t } = useTranslation();
   const [showVillageSelector, setShowVillageSelector] = useState(false);
+  const onboardingData = getStoredOnboarding();
 
   useEffect(() => {
     if (!isLoading && !selectedVillage) {
@@ -80,6 +83,15 @@ export default function HomePage() {
                 <Link to="/complaints">{t('fileComplaint')}</Link>
               </Button>
             </div>
+            {/* Location badge from onboarding */}
+            {onboardingData && (
+              <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-card/80 backdrop-blur-sm border border-border px-4 py-2 text-sm text-muted-foreground animate-slide-up" style={{ animationDelay: '0.3s' }}>
+                <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+                <span>
+                  {onboardingData.villageName}, {onboardingData.talukaName}, {onboardingData.districtName}, {onboardingData.stateName}
+                </span>
+              </div>
+            )}
           </div>
         </div>
         {/* Decorative elements */}
